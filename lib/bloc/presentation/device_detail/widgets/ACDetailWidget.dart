@@ -1,6 +1,8 @@
 import 'package:TA_IOT/bloc/data/model/device_model.dart';
+import 'package:TA_IOT/bloc/presentation/common/utils/AppAssets.dart';
 import 'package:flutter/cupertino.dart';
 
+import '../../common/utils/Strings.dart';
 import 'ACModelWidget.dart';
 import 'ACTemperatureWidget.dart';
 import 'DeviceParamWidget.dart';
@@ -21,7 +23,7 @@ class ACDetailWidget extends StatelessWidget {
             child: Container(
                 margin: const EdgeInsets.all(5.0),
                 child: Image.asset(
-                  "assets/images/ac_icon.png",
+                  AppAssets.ac,
                   height: 150,
                   fit: BoxFit.cover,
                 ))),
@@ -30,15 +32,15 @@ class ACDetailWidget extends StatelessWidget {
           children: [
             ACModeWidget(
               mode: "Cool",
-              icon: "assets/images/cool.png",
+              icon: AppAssets.cool,
             ),
             ACModeWidget(
               mode: "Dry",
-              icon: "assets/images/dry.png",
+              icon: AppAssets.dry,
             ),
             ACModeWidget(
               mode: "Sleep",
-              icon: "assets/images/sleep.png",
+              icon: AppAssets.sleep,
             )
           ],
         ),
@@ -52,8 +54,13 @@ class ACDetailWidget extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            DeviceParamWidget(paramName: "Humidity", value: "${deviceInfoModel.airConditioner!.humidity.toString()}%", image: "assets/images/humidity.png",),
-            DeviceParamWidget(paramName: "Energy Usage", value: "${deviceInfoModel.airConditioner!.humidity.toString()} KWH", image: "assets/images/energy_blue.png"),
+            DeviceParamWidget(
+              paramName: Strings.humidity,
+              value: "${deviceInfoModel.airConditioner!.humidity.toString()}%",
+              image: AppAssets.humidity,
+            ),
+            DeviceParamWidget(
+                paramName: Strings.energy_usage, value: "${deviceInfoModel.airConditioner!.humidity.toString()} KWH", image: AppAssets.energy_blue),
           ],
         )
       ]),

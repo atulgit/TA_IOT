@@ -1,6 +1,8 @@
+import 'package:equatable/equatable.dart';
+
 import 'device_category.dart';
 
-class DeviceInfoModel {
+class DeviceInfoModel extends Equatable {
   int deviceId = -1;
   String deviceName = "";
   String deviceCaption = "";
@@ -15,6 +17,9 @@ class DeviceInfoModel {
 
   DeviceInfoModel(this.deviceId, this.deviceCategory, this.deviceCaption, this.deviceImagePath, this.deviceName, this.deviceState, this.energyUsage,
       {this.airConditioner, this.television});
+
+  @override
+  List<Object?> get props => [deviceState];
 }
 
 enum AirConditionerModes { COOL, DRY }

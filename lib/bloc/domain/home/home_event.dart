@@ -3,4 +3,11 @@ part of 'home_bloc.dart';
 @immutable
 abstract class HomeScreenEvent {}
 
-class DeviceList extends HomeScreenEvent {}
+class DeviceListEvent extends HomeScreenEvent {}
+
+class DeviceStateEvent extends HomeScreenEvent {
+  final int deviceId;
+  final int state;
+
+  DeviceStateEvent(this.deviceId, this.state);
+}

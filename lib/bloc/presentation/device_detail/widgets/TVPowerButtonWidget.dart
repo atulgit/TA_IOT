@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../common/utils/AppAssets.dart';
+
 class TVPowerButtonWidget extends StatelessWidget {
   const TVPowerButtonWidget({
     Key? key,
@@ -21,7 +23,7 @@ class TVPowerButtonWidget extends StatelessWidget {
               height: 50,
               width: 50,
               child: Image.asset(
-                "assets/images/power.png",
+                AppAssets.power,
                 height: 20,
                 width: 20,
                 fit: BoxFit.cover,

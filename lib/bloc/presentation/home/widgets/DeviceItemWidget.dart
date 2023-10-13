@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../data/model/device_model.dart';
+import '../../../domain/home/home_bloc.dart';
 import '../../common/styles/DeviceItemStyle.dart';
 import 'DeviceEnergyWidget.dart';
 import 'DeviceItemTextWidget.dart';
@@ -10,12 +11,9 @@ import 'DeviceItemTextWidget.dart';
 class DeviceItemWidget extends StatefulWidget {
   final DeviceInfoModel deviceInfoModel;
   final double deviceItemHeight;
+  final HomeBloc homeBloc;
 
-  DeviceItemWidget({
-    Key? key,
-    required this.deviceInfoModel,
-    required this.deviceItemHeight,
-  }) : super(key: key);
+  DeviceItemWidget({Key? key, required this.deviceInfoModel, required this.deviceItemHeight, required this.homeBloc}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -35,6 +33,12 @@ class DeviceItemWidgetState extends State<DeviceItemWidget> {
   });
 
   @override
+  void initState() {
+    super.initState();
+    isSwitchedOn = deviceInfoModel.deviceState == 1 ? true : false;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
         child: Column(mainAxisAlignment: MainAxisAlignment.start, crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -43,6 +47,8 @@ class DeviceItemWidgetState extends State<DeviceItemWidget> {
             Switch(
               value: isSwitchedOn,
               onChanged: (value) {
+                // widget.homeBloc.add(DeviceStateEvent(deviceInfoModel.deviceId, value ? 1 : 0));
+
                 setState(() {
                   isSwitchedOn = value;
                   deviceInfoModel.deviceState = value ? 1 : 0;

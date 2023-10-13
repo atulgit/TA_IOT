@@ -8,6 +8,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
+import '../common/utils/Strings.dart';
+
 class DeviceDetailScreen extends StatefulWidget {
   final DeviceInfoModel deviceInfoModel;
 
@@ -20,7 +22,7 @@ class DeviceDetailScreen extends StatefulWidget {
 }
 
 class DeviceDetailState extends State<DeviceDetailScreen> {
-  final String header = "Device Detail";
+  final String header = Strings.header_device_detail;
 
   @override
   Widget build(BuildContext context) {

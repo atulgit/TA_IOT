@@ -1,6 +1,7 @@
 import 'package:TA_IOT/bloc/presentation/device_detail/widgets/TVButtonsItemWidget.dart';
 import 'package:flutter/cupertino.dart';
 
+import '../../common/utils/AppAssets.dart';
 import 'ACModelWidget.dart';
 
 class TVModesWidget extends StatelessWidget {
@@ -15,15 +16,15 @@ class TVModesWidget extends StatelessWidget {
       children: [
         TVButtonItemWidget(
           mode: "Brightness",
-          icon: "assets/images/brightness.png",
+          icon: AppAssets.brightness,
         ),
         TVButtonItemWidget(
           mode: "Contrast",
-          icon: "assets/images/contrast.png",
+          icon: AppAssets.contrast,
         ),
         TVButtonItemWidget(
           mode: "Volume",
-          icon: "assets/images/volume.png",
+          icon: AppAssets.volume,
         )
       ],
     );

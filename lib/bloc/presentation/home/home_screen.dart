@@ -10,6 +10,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../common/utils/Strings.dart';
+
 class HomeScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -21,7 +23,7 @@ class HomeState extends State<HomeScreen> {
   late final DeviceDetailRepository deviceDetailRepository;
   late final HomeBloc homeBloc;
   double deviceItemHeight = 250;
-  final String header = "My Devices";
+  final String header = Strings.header_my_devices;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +37,7 @@ class HomeState extends State<HomeScreen> {
 
     deviceDetailRepository = DeviceDetailRepository();
     homeBloc = HomeBloc(deviceDetailRepository);
-    homeBloc.add(DeviceList());
+    homeBloc.add(DeviceListEvent());
   }
 
   Widget _getBody() {
@@ -47,37 +49,43 @@ class HomeState extends State<HomeScreen> {
             if (state is DeviceListLoading) {
               return CircularProgressIndicator();
             } else if (state is DeviceListLoaded) {
-              return SingleChildScrollView(
-                  child: GridView.builder(
-                      gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        childAspectRatio: .8,
-                      ),
-                      shrinkWrap: true,
-                      physics: const ScrollPhysics(),
-                      itemCount: state.deviceList.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        var deviceItem = state.deviceList[index];
-                        return InkWell(
-                            child: _getDeviceItem(deviceItem),
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute<DeviceDetailScreen>(
-                                    settings: const RouteSettings(name: "/home"),
-                                    builder: (_) => DeviceDetailScreen(
-                                      deviceInfoModel: deviceItem,
-                                    ),
-                                  ));
-                            });
-                      }));
+              return _getDeviceListWidget(state.deviceList);
             } else if (state is DeviceListError) {
               return Text('Unable to fetch the user details!!!', style: TextStyle(color: Colors.black54));
+            } else if (state is DeviceStateChanged) {
+              return _getDeviceListWidget(state.deviceList);
             } else {
               return Container();
             }
           })
     ]);
+  }
+
+  Widget _getDeviceListWidget(List<DeviceInfoModel> deviceList) {
+    return SingleChildScrollView(
+        child: GridView.builder(
+            gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: .8,
+            ),
+            shrinkWrap: true,
+            physics: const ScrollPhysics(),
+            itemCount: deviceList.length,
+            itemBuilder: (BuildContext context, int index) {
+              var deviceItem = deviceList[index];
+              return InkWell(
+                  child: _getDeviceItem(deviceItem),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute<DeviceDetailScreen>(
+                          settings: const RouteSettings(name: "/home"),
+                          builder: (_) => DeviceDetailScreen(
+                            deviceInfoModel: deviceItem,
+                          ),
+                        ));
+                  });
+            }));
   }
 
   Widget _getDeviceItem(DeviceInfoModel deviceInfoModel) {
@@ -97,6 +105,7 @@ class HomeState extends State<HomeScreen> {
     return DeviceItemWidget(
       deviceItemHeight: deviceItemHeight,
       deviceInfoModel: deviceInfoModel,
+      homeBloc: homeBloc,
     );
   }
 
@@ -104,6 +113,7 @@ class HomeState extends State<HomeScreen> {
     return DeviceItemWidget(
       deviceItemHeight: deviceItemHeight,
       deviceInfoModel: deviceInfoModel,
+      homeBloc: homeBloc,
     );
   }
 
@@ -111,6 +121,7 @@ class HomeState extends State<HomeScreen> {
     return DeviceItemWidget(
       deviceItemHeight: deviceItemHeight,
       deviceInfoModel: deviceInfoModel,
+      homeBloc: homeBloc,
     );
   }
 }

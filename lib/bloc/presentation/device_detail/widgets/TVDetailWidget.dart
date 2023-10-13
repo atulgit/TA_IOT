@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../data/model/device_model.dart';
+import '../../common/utils/AppAssets.dart';
 import 'ACModelWidget.dart';
 import 'ACTemperatureWidget.dart';
 import 'DeviceParamWidget.dart';
@@ -25,7 +26,7 @@ class TVDetailWidget extends StatelessWidget {
             child: Container(
                 margin: const EdgeInsets.all(5.0),
                 child: Image.asset(
-                  "assets/images/tv_thumb.png",
+                  AppAssets.tv_thumb,
                   height: 150,
                   fit: BoxFit.cover,
                 ))),
@@ -44,12 +45,12 @@ class TVDetailWidget extends StatelessWidget {
             DeviceParamWidget(
               value: "Movie",
               paramName: "Picture Mode",
-              image: "assets/images/pic_mode.png",
+              image: AppAssets.pic_mode,
             ),
             DeviceParamWidget(
               value: "Jazz",
               paramName: "Sound Mode",
-              image: "assets/images/sound_mode.png",
+              image: AppAssets.sound_mode,
             ),
           ],
         )
