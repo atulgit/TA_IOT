@@ -16,7 +16,7 @@ class DeviceItemIconWidget extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.all(10.0),
       child: Container(
-          margin: const EdgeInsets.all(5.0),
+          margin: const EdgeInsets.all(10.0),
           child: Image.asset(
             path,
             height: 20,

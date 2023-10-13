@@ -4,6 +4,7 @@ import 'package:TA_IOT/bloc/data/repository/device_detail_repository.dart';
 import 'package:TA_IOT/bloc/domain/device_detail/device_detail_bloc.dart';
 import 'package:TA_IOT/bloc/domain/home/home_bloc.dart';
 import 'package:TA_IOT/bloc/presentation/common/styles/DeviceItemStyle.dart';
+import 'package:TA_IOT/bloc/presentation/device_detail/device_detail_screen.dart';
 import 'package:TA_IOT/bloc/presentation/home/widgets/DeviceItemWidget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -57,7 +58,18 @@ class HomeState extends State<HomeScreen> {
                       itemCount: state.deviceList.length,
                       itemBuilder: (BuildContext context, int index) {
                         var deviceItem = state.deviceList[index];
-                        return _getDeviceItem(deviceItem);
+                        return InkWell(
+                            child: _getDeviceItem(deviceItem),
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute<DeviceDetailScreen>(
+                                    settings: const RouteSettings(name: "/home"),
+                                    builder: (_) => DeviceDetailScreen(
+                                      deviceInfoModel: deviceItem,
+                                    ),
+                                  ));
+                            });
                       }));
             } else if (state is DeviceListError) {
               return Text('Unable to fetch the user details!!!', style: TextStyle(color: Colors.black54));

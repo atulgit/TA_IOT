@@ -6,10 +6,10 @@ class CommonStyle {
   }
 
   static Decoration getDeviceParamsDecorator() {
-    return BoxDecoration(border: Border.all(color: Colors.black26), borderRadius: BorderRadius.all(Radius.circular(10)));
+    return BoxDecoration(border: Border.all(color: Colors.black12), borderRadius: BorderRadius.all(Radius.circular(10)));
   }
 
   static Decoration getACModeItemDecorator() {
-    return BoxDecoration(border: Border.all(color: Colors.black26), borderRadius: BorderRadius.all(Radius.circular(10)));
+    return BoxDecoration(border: Border.all(color: Colors.black12), borderRadius: BorderRadius.all(Radius.circular(10)));
   }
 }
