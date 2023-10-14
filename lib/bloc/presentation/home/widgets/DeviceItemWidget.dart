@@ -1,6 +1,7 @@
 import 'package:TA_IOT/bloc/presentation/home/widgets/DeviceItemIconWidget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../data/model/device_model.dart';
 import '../../../domain/home/home_bloc.dart';
@@ -22,9 +23,10 @@ class DeviceItemWidget extends StatefulWidget {
 }
 
 class DeviceItemWidgetState extends State<DeviceItemWidget> {
-  final DeviceInfoModel deviceInfoModel;
+  late DeviceInfoModel deviceInfoModel;
   final double deviceItemHeight;
   bool isSwitchedOn = false;
+  late final HomeBloc homeBloc;
 
   DeviceItemWidgetState({
     Key? key,
@@ -36,10 +38,33 @@ class DeviceItemWidgetState extends State<DeviceItemWidget> {
   void initState() {
     super.initState();
     isSwitchedOn = deviceInfoModel.deviceState == 1 ? true : false;
+    homeBloc = BlocProvider.of<HomeBloc>(context);
   }
 
   @override
   Widget build(BuildContext context) {
+    return BlocBuilder(
+        bloc: homeBloc,
+        builder: (context, state) {
+          if (state is DeviceListLoaded) {
+            return _getDeviceItemWidget();
+          } else if (state is DeviceStateChanged) {
+            deviceInfoModel = state.deviceInfoModel;
+            return _getDeviceItemWidget();
+          } else {
+            return Container();
+          }
+        },
+        buildWhen: (context, state) {
+          if (state is DeviceListLoaded) return true;
+          if (state is DeviceStateChanged && deviceInfoModel.deviceId == state.deviceInfoModel.deviceId) {
+            return true;
+          }
+          return false;
+        });
+  }
+
+  Widget _getDeviceItemWidget() {
     return Container(
         child: Column(mainAxisAlignment: MainAxisAlignment.start, crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
@@ -47,12 +72,8 @@ class DeviceItemWidgetState extends State<DeviceItemWidget> {
             Switch(
               value: isSwitchedOn,
               onChanged: (value) {
-                // widget.homeBloc.add(DeviceStateEvent(deviceInfoModel.deviceId, value ? 1 : 0));
-
-                setState(() {
-                  isSwitchedOn = value;
-                  deviceInfoModel.deviceState = value ? 1 : 0;
-                });
+                widget.homeBloc.add(DeviceStateEvent(deviceInfoModel.deviceId, value ? 1 : 0));
+                isSwitchedOn = value;
               },
             )
           ]),

@@ -17,3 +17,9 @@ class NavigateToDeviceDetailEvent extends HomeScreenEvent {
 
   NavigateToDeviceDetailEvent(this.deviceInfoModel);
 }
+
+class CategorySelectedEvent extends HomeScreenEvent {
+  final DeviceCategoryType categoryType;
+
+  CategorySelectedEvent(this.categoryType);
+}

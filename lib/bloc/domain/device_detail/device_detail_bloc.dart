@@ -1,4 +1,9 @@
 import 'package:TA_IOT/bloc/data/model/device_model.dart';
+import 'package:TA_IOT/bloc/domain/device_detail/use_cases/ChangeACModeUseCase.dart';
+import 'package:TA_IOT/bloc/domain/device_detail/use_cases/ChangeACTemperatureUseCase.dart';
+import 'package:TA_IOT/bloc/domain/device_detail/use_cases/ChangeTVPictureModeUseCase.dart';
+import 'package:TA_IOT/bloc/domain/device_detail/use_cases/ChangeTVSoundModeUseCase.dart';
+import 'package:TA_IOT/bloc/domain/device_detail/use_cases/GetDeviceDetailUseCase.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -20,61 +25,22 @@ class DeviceDetailBloc extends Bloc<DeviceDetailEvent, DeviceDetailState> {
     yield DeviceDetailLoading();
     try {
       if (event is DeviceDetail) {
-        yield DeviceDetailLoadedState(await _getDevice(event.deviceId));
+        yield DeviceDetailLoadedState(await GetDeviceDetailUseCase(deviceDetailRepository).getDeviceDetail(event.deviceId));
       } else if (event is ChangeACModeEvent) {
-        var device = await _getDevice(event.deviceId);
-        device.airConditioner?.mode = event.mode;
+        var device = await ChangeACModeUseCase(deviceDetailRepository).changeACMode(event.deviceId, event.mode);
         yield ACModeChangedState(device);
       } else if (event is TVPictureModeChangedEvent) {
-        var device = await _getDevice(event.deviceId);
-        switch (device.television?.pictureMode) {
-          case TelevisionPictureModes.STANDARD:
-            device.television?.pictureMode = TelevisionPictureModes.DYNAMIC;
-            break;
-          case TelevisionPictureModes.DYNAMIC:
-            device.television?.pictureMode = TelevisionPictureModes.HDR_CINEMA;
-            break;
-          case TelevisionPictureModes.HDR_CINEMA:
-            device.television?.pictureMode = TelevisionPictureModes.HDR_STANDARD;
-            break;
-          case TelevisionPictureModes.HDR_STANDARD:
-            device.television?.pictureMode = TelevisionPictureModes.STANDARD;
-            break;
-        }
+        var device = await ChangeTVPictureModeUseCase(deviceDetailRepository).changeTVPictureMode(event.deviceId);
         yield TVPictureModeChangedState(device);
       } else if (event is TVSoundModeChangedEvent) {
-        var device = await _getDevice(event.deviceId);
-        switch (device.television?.soundMode) {
-          case TelevisionSoundModes.MUSIC:
-            device.television?.soundMode = TelevisionSoundModes.ROCK;
-            break;
-          case TelevisionSoundModes.ROCK:
-            device.television?.soundMode = TelevisionSoundModes.MOVIE;
-            break;
-          case TelevisionSoundModes.MOVIE:
-            device.television?.soundMode = TelevisionSoundModes.JAZZ;
-            break;
-          case TelevisionSoundModes.JAZZ:
-            device.television?.soundMode = TelevisionSoundModes.MUSIC;
-            break;
-        }
+        var device = await ChangeTVSoundModeUseCase(deviceDetailRepository).changeTVSoundMode(event.deviceId);
         emit(TVSoundModeChangedState(device));
       } else if (event is ACTemperatureChangeEvent) {
-        var device = await _getDevice(event.deviceId);
-        if (event.increaseOrDecrease == "+" && device.airConditioner!.temperature < 100)
-          device.airConditioner?.temperature++;
-        else if (event.increaseOrDecrease == "-" && device.airConditioner!.temperature > 0) device.airConditioner?.temperature--;
-
+        var device = await ChangeACTemperatureUseCase(deviceDetailRepository).changeACTemperature(event.increaseOrDecrease, event.deviceId);
         emit(ACTemperatureChangeState(device));
       }
     } catch (e) {
       yield DeviceDetailError();
     }
-  }
-
-  Future<DeviceInfoModel> _getDevice(int deviceId) async {
-    var deviceList = await deviceDetailRepository.getDeviceList();
-    var device = deviceList.where((element) => element.deviceId == deviceId).single;
-    return device;
   }
 }

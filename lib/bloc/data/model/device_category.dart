@@ -20,4 +20,4 @@ class DeviceCategory {
   }
 }
 
-enum DeviceCategoryType { AC, TV, SMART_DOOR }
+enum DeviceCategoryType { ALL, AC, TV, SMART_DOOR }

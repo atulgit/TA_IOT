@@ -1,4 +1,8 @@
 import 'dart:async';
+import 'package:TA_IOT/bloc/data/model/device_category.dart';
+import 'package:TA_IOT/bloc/domain/home/use_cases/CategorySelectedUseCase.dart';
+import 'package:TA_IOT/bloc/domain/home/use_cases/DeviceStateChangeUseCase.dart';
+import 'package:TA_IOT/bloc/domain/home/use_cases/GetDeviceListUseCase.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/scheduler.dart';
@@ -13,6 +17,8 @@ part 'home_event.dart';
 part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
+  DeviceCategoryType selectedCategory = DeviceCategoryType.AC;
+
   final GlobalKey<NavigatorState> navigatorKey;
   final DeviceDetailRepository deviceDetailRepository;
 
@@ -23,18 +29,21 @@ class HomeBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
     yield DeviceListLoading();
     try {
       if (event is DeviceListEvent) {
-        var deviceList = await deviceDetailRepository.getDeviceList();
+        var deviceList = await GetDeviceListUseCase(deviceDetailRepository).getDeviceList();
         yield DeviceListLoaded(deviceList);
       } else if (event is DeviceStateEvent) {
-        var deviceList = await deviceDetailRepository.getDeviceList();
-        deviceList.where((element) => element.deviceId == event.deviceId).single.deviceState = event.state;
-        // yield DeviceStateChanged(deviceList);
-        emit(DeviceStateChanged(deviceList));
+        var device = await DeviceStateChangeUseCase(deviceDetailRepository).setDeviceState(event.deviceId, event.state);
+        emit(DeviceStateChanged(device));
       } else if (event is NavigateToDeviceDetailEvent) {
         // SchedulerBinding.instance.addPostFrameCallback((_) {
         //   navigatorKey.currentState?.pushNamed("device_detail", arguments: event.deviceInfoModel);
         // });
         // navigatorKey.currentState?.pushNamed("device_detail", arguments: event.deviceInfoModel);
+      } else if (event is CategorySelectedEvent) {
+        selectedCategory = event.categoryType;
+        emit(CategorySelectedState());
+        var deviceList = await CategorySelectedUseCase(deviceDetailRepository).setCategory(event.categoryType);
+        emit(DeviceListLoaded(deviceList));
       }
     } catch (e) {
       yield DeviceListError();

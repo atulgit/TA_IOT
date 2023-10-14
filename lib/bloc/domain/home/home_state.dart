@@ -29,17 +29,22 @@ class DeviceListLoading extends HomeScreenState {
 }
 
 class DeviceStateChanged extends HomeScreenState {
-  List<DeviceInfoModel> deviceList = [];
+  final DeviceInfoModel deviceInfoModel;
 
-  DeviceStateChanged(this.deviceList);
+  DeviceStateChanged(this.deviceInfoModel);
 
   @override
-  List<Object> get props => [deviceList];
+  List<Object> get props => [deviceInfoModel];
 
   @override
   String toString() {
     return "";
   }
+}
+
+class CategorySelectedState extends HomeScreenState {
+  @override
+  List<Object?> get props => [];
 }
 
 class DeviceListError extends HomeScreenState {

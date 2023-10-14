@@ -71,6 +71,9 @@ class DeviceDetailState extends State<DeviceDetailScreen> {
         return ACDetailWidget(
           deviceInfoModel: widget.deviceInfoModel,
         );
+
+      default:
+        return Container();
     }
   }
 }

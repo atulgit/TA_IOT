@@ -4,7 +4,10 @@ import 'package:TA_IOT/bloc/data/repository/device_detail_repository.dart';
 import 'package:TA_IOT/bloc/domain/device_detail/device_detail_bloc.dart';
 import 'package:TA_IOT/bloc/domain/home/home_bloc.dart';
 import 'package:TA_IOT/bloc/presentation/common/styles/DeviceItemStyle.dart';
+import 'package:TA_IOT/bloc/presentation/common/utils/AppAssets.dart';
 import 'package:TA_IOT/bloc/presentation/device_detail/device_detail_screen.dart';
+import 'package:TA_IOT/bloc/presentation/home/widgets/CategoryListWidget.dart';
+import 'package:TA_IOT/bloc/presentation/home/widgets/CategoryWidget.dart';
 import 'package:TA_IOT/bloc/presentation/home/widgets/DeviceItemWidget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -43,24 +46,32 @@ class HomeState extends State<HomeScreen> {
   }
 
   Widget _getBody() {
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Padding(padding: EdgeInsets.all(20), child: Text(header, style: TextStyle(fontSize: 18, color: Colors.black87, fontWeight: FontWeight.bold))),
-      BlocBuilder(
-          bloc: homeBloc,
-          builder: (BuildContext context, HomeScreenState state) {
-            if (state is DeviceListLoading) {
-              return CircularProgressIndicator();
-            } else if (state is DeviceListLoaded) {
-              return _getDeviceListWidget(state.deviceList);
-            } else if (state is DeviceListError) {
-              return Text('Unable to fetch the user details!!!', style: TextStyle(color: Colors.black54));
-            } else if (state is DeviceStateChanged) {
-              return _getDeviceListWidget(state.deviceList);
-            } else {
-              return Container();
-            }
-          })
-    ]);
+    return BlocProvider<HomeBloc>(
+        create: (context) => homeBloc,
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Padding(
+              padding: EdgeInsets.only(left: 10, right: 20, top: 20, bottom: 10),
+              child: Text(header, style: TextStyle(fontSize: 18, color: Colors.black87, fontWeight: FontWeight.bold))),
+          CategoryListWidget(),
+          BlocBuilder(
+            bloc: homeBloc,
+            builder: (BuildContext context, HomeScreenState state) {
+              if (state is DeviceListLoading) {
+                return CircularProgressIndicator();
+              } else if (state is DeviceListLoaded) {
+                return _getDeviceListWidget(state.deviceList);
+              } else if (state is DeviceListError) {
+                return Text('Unable to fetch the device details!!!', style: TextStyle(color: Colors.black54));
+              } else {
+                return Container();
+              }
+            },
+            buildWhen: (context, state) {
+              if (state is DeviceListLoaded) return true;
+              return false;
+            },
+          )
+        ]));
   }
 
   Widget _getDeviceListWidget(List<DeviceInfoModel> deviceList) {
@@ -102,6 +113,9 @@ class HomeState extends State<HomeScreen> {
 
       case DeviceCategoryType.TV:
         return _getTVDevice(deviceInfoModel);
+
+      default:
+        return Container();
     }
   }
 

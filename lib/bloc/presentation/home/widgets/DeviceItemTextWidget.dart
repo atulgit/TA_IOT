@@ -34,6 +34,7 @@ class DeviceItemWidgetText extends StatelessWidget {
           Text(
             deviceInfoModel.deviceState == 1 ? "On" : "Off",
             textAlign: TextAlign.center,
+            style: TextStyle(fontWeight: FontWeight.bold),
           )
         ]));
   }

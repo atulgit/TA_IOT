@@ -12,4 +12,8 @@ class CommonStyle {
   static Decoration getACModeItemDecorator({Color color = Colors.black12}) {
     return BoxDecoration(color: color, border: Border.all(color: Colors.black12), borderRadius: BorderRadius.all(Radius.circular(10)));
   }
+
+  static Decoration getCategoryDecorator({Color color = Colors.blue}) {
+    return BoxDecoration(color: color, border: Border.all(color: Colors.black12.withOpacity(.1)), borderRadius: BorderRadius.all(Radius.circular(20)));
+  }
 }
