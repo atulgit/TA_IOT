@@ -32,7 +32,7 @@ class ACDetailWidget extends StatelessWidget {
         const SizedBox(
           height: 50,
         ),
-        ACTemperatureWidget(),
+        ACTemperatureWidget(deviceInfoModel: deviceInfoModel,),
         const SizedBox(
           height: 50,
         ),

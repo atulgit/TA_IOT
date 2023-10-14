@@ -42,6 +42,30 @@ class DeviceDetailBloc extends Bloc<DeviceDetailEvent, DeviceDetailState> {
             break;
         }
         yield TVPictureModeChangedState(device);
+      } else if (event is TVSoundModeChangedEvent) {
+        var device = await _getDevice(event.deviceId);
+        switch (device.television?.soundMode) {
+          case TelevisionSoundModes.MUSIC:
+            device.television?.soundMode = TelevisionSoundModes.ROCK;
+            break;
+          case TelevisionSoundModes.ROCK:
+            device.television?.soundMode = TelevisionSoundModes.MOVIE;
+            break;
+          case TelevisionSoundModes.MOVIE:
+            device.television?.soundMode = TelevisionSoundModes.JAZZ;
+            break;
+          case TelevisionSoundModes.JAZZ:
+            device.television?.soundMode = TelevisionSoundModes.MUSIC;
+            break;
+        }
+        emit(TVSoundModeChangedState(device));
+      } else if (event is ACTemperatureChangeEvent) {
+        var device = await _getDevice(event.deviceId);
+        if (event.increaseOrDecrease == "+" && device.airConditioner!.temperature < 100)
+          device.airConditioner?.temperature++;
+        else if (event.increaseOrDecrease == "-" && device.airConditioner!.temperature > 0) device.airConditioner?.temperature--;
+
+        emit(ACTemperatureChangeState(device));
       }
     } catch (e) {
       yield DeviceDetailError();

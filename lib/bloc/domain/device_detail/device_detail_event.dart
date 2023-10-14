@@ -30,3 +30,22 @@ class TVPictureModeChangedEvent extends DeviceDetailEvent {
   @override
   List<Object?> get props => [deviceId];
 }
+
+class TVSoundModeChangedEvent extends DeviceDetailEvent {
+  final int deviceId;
+
+  TVSoundModeChangedEvent(this.deviceId);
+
+  @override
+  List<Object?> get props => [deviceId];
+}
+
+class ACTemperatureChangeEvent extends DeviceDetailEvent {
+  final String increaseOrDecrease;
+  final int deviceId;
+
+  ACTemperatureChangeEvent(this.increaseOrDecrease, this.deviceId);
+
+  @override
+  List<Object?> get props => [increaseOrDecrease, deviceId];
+}

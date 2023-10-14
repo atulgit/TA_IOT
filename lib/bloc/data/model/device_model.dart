@@ -43,7 +43,7 @@ enum TelevisionSoundModes { ROCK, JAZZ, MOVIE, MUSIC }
 
 class AirConditionerModel {
   AirConditionerModes mode;
-  int temperature = 0;
+  int temperature = 25;
   double humidity = 0.0;
 
   AirConditionerModel(this.mode, this.humidity, this.temperature);

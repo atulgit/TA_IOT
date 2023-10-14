@@ -29,16 +29,22 @@ class ACModeListWidgetState extends State<ACModeListWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<DeviceDetailBloc, DeviceDetailState>(builder: (context, state) {
-      if (state is ACModeChangedState) {
-        deviceInfoModel = state.deviceInfoModel;
-        return _getACModesRow();
-      } else if (state is DeviceDetailLoadedState) {
-        return _getACModesRow();
-      }
+    return BlocBuilder<DeviceDetailBloc, DeviceDetailState>(
+      builder: (context, state) {
+        if (state is ACModeChangedState) {
+          deviceInfoModel = state.deviceInfoModel;
+          return _getACModesRow();
+        } else if (state is DeviceDetailLoadedState) {
+          return _getACModesRow();
+        }
 
-      return Container();
-    });
+        return Container();
+      },
+      buildWhen: (context, state) {
+        if (state is DeviceDetailLoadedState || state is ACModeChangedState) return true;
+        return false;
+      },
+    );
   }
 
   Widget _getACModesRow() {

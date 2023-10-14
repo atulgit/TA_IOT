@@ -70,13 +70,23 @@ class TVDetailWidgetState extends State<TVDetailWidget> {
               }
 
               return Container();
+            }, buildWhen: (previousState, state) {
+              if (state is DeviceDetailLoadedState || state is TVPictureModeChangedState) return true;
+              return false;
             }),
-            DeviceParamWidget(
-              onTap: () {},
-              value: "Jazz",
-              paramName: "Sound Mode",
-              image: AppAssets.sound_mode,
-            ),
+            BlocBuilder<DeviceDetailBloc, DeviceDetailState>(builder: (context, state) {
+              if (state is DeviceDetailLoadedState) {
+                return _getSoundModeWidget();
+              } else if (state is TVSoundModeChangedState) {
+                deviceInfoModel = state.deviceDetail;
+                return _getSoundModeWidget();
+              }
+
+              return Container();
+            }, buildWhen: (previousState, state) {
+              if (state is DeviceDetailLoadedState || state is TVSoundModeChangedState) return true;
+              return false;
+            }),
           ],
         )
       ]),
@@ -94,6 +104,17 @@ class TVDetailWidgetState extends State<TVDetailWidget> {
     );
   }
 
+  Widget _getSoundModeWidget() {
+    return DeviceParamWidget(
+      onTap: () {
+        deviceDetailBloc.add(TVSoundModeChangedEvent(deviceInfoModel.deviceId));
+      },
+      value: _getSoundModeString(),
+      paramName: "Sound Mode",
+      image: AppAssets.sound_mode,
+    );
+  }
+
   String _getPictureModeString() {
     switch (deviceInfoModel.television!.pictureMode) {
       case TelevisionPictureModes.STANDARD:
@@ -107,6 +128,22 @@ class TVDetailWidgetState extends State<TVDetailWidget> {
 
       case TelevisionPictureModes.HDR_CINEMA:
         return "HDR Cinema";
+    }
+  }
+
+  String _getSoundModeString() {
+    switch (deviceInfoModel.television!.soundMode) {
+      case TelevisionSoundModes.JAZZ:
+        return "Jazz";
+
+      case TelevisionSoundModes.MOVIE:
+        return "Movie";
+
+      case TelevisionSoundModes.MUSIC:
+        return "Music";
+
+      case TelevisionSoundModes.ROCK:
+        return "Rock";
     }
   }
 }

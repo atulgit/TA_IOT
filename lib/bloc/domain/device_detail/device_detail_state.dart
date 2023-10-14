@@ -24,3 +24,15 @@ class TVPictureModeChangedState extends DeviceDetailState {
 
   TVPictureModeChangedState(this.deviceDetail);
 }
+
+class TVSoundModeChangedState extends DeviceDetailState {
+  final DeviceInfoModel deviceDetail;
+
+  TVSoundModeChangedState(this.deviceDetail);
+}
+
+class ACTemperatureChangeState extends DeviceDetailState {
+  final DeviceInfoModel deviceDetail;
+
+  ACTemperatureChangeState(this.deviceDetail);
+}
