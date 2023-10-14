@@ -1,8 +1,10 @@
 import 'package:TA_IOT/bloc/presentation/common/styles/DeviceItemStyle.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../data/model/device_model.dart';
+import '../../../domain/device_detail/device_detail_bloc.dart';
 import '../../common/utils/AppAssets.dart';
 import 'ACModelWidget.dart';
 import 'ACTemperatureWidget.dart';
@@ -10,13 +12,30 @@ import 'DeviceParamWidget.dart';
 import 'TVModesWidget.dart';
 import 'TVPowerButtonWidget.dart';
 
-class TVDetailWidget extends StatelessWidget {
-  final DeviceInfoModel deviceInfoModel;
+class TVDetailWidget extends StatefulWidget {
+  late DeviceInfoModel deviceInfoModel;
 
-  const TVDetailWidget({
+  TVDetailWidget({
     required this.deviceInfoModel,
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() {
+    return TVDetailWidgetState(deviceInfoModel: deviceInfoModel);
+  }
+}
+
+class TVDetailWidgetState extends State<TVDetailWidget> {
+  late DeviceInfoModel deviceInfoModel;
+  late final DeviceDetailBloc deviceDetailBloc;
+
+  TVDetailWidgetState({required this.deviceInfoModel});
+
+  @override
+  void initState() {
+    deviceDetailBloc = BlocProvider.of<DeviceDetailBloc>(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,12 +61,18 @@ class TVDetailWidget extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            BlocBuilder<DeviceDetailBloc, DeviceDetailState>(builder: (context, state) {
+              if (state is DeviceDetailLoadedState) {
+                return _getPictureModeWidget();
+              } else if (state is TVPictureModeChangedState) {
+                deviceInfoModel = state.deviceDetail;
+                return _getPictureModeWidget();
+              }
+
+              return Container();
+            }),
             DeviceParamWidget(
-              value: "Movie",
-              paramName: "Picture Mode",
-              image: AppAssets.pic_mode,
-            ),
-            DeviceParamWidget(
+              onTap: () {},
               value: "Jazz",
               paramName: "Sound Mode",
               image: AppAssets.sound_mode,
@@ -56,5 +81,32 @@ class TVDetailWidget extends StatelessWidget {
         )
       ]),
     );
+  }
+
+  Widget _getPictureModeWidget() {
+    return DeviceParamWidget(
+      onTap: () {
+        deviceDetailBloc.add(TVPictureModeChangedEvent(deviceInfoModel.deviceId));
+      },
+      value: _getPictureModeString(),
+      paramName: "Picture Mode",
+      image: AppAssets.pic_mode,
+    );
+  }
+
+  String _getPictureModeString() {
+    switch (deviceInfoModel.television!.pictureMode) {
+      case TelevisionPictureModes.STANDARD:
+        return "Standard";
+
+      case TelevisionPictureModes.DYNAMIC:
+        return "Dynamic";
+
+      case TelevisionPictureModes.HDR_STANDARD:
+        return "HDR Standard";
+
+      case TelevisionPictureModes.HDR_CINEMA:
+        return "HDR Cinema";
+    }
   }
 }

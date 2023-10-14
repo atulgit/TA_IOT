@@ -3,6 +3,7 @@ import 'package:TA_IOT/bloc/presentation/common/utils/AppAssets.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../common/utils/Strings.dart';
+import 'ACModeListWidget.dart';
 import 'ACModelWidget.dart';
 import 'ACTemperatureWidget.dart';
 import 'DeviceParamWidget.dart';
@@ -27,23 +28,7 @@ class ACDetailWidget extends StatelessWidget {
                   height: 150,
                   fit: BoxFit.cover,
                 ))),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            ACModeWidget(
-              mode: "Cool",
-              icon: AppAssets.cool,
-            ),
-            ACModeWidget(
-              mode: "Dry",
-              icon: AppAssets.dry,
-            ),
-            ACModeWidget(
-              mode: "Sleep",
-              icon: AppAssets.sleep,
-            )
-          ],
-        ),
+        ACModeListWidget(deviceInfoModel: deviceInfoModel),
         const SizedBox(
           height: 50,
         ),
@@ -67,3 +52,4 @@ class ACDetailWidget extends StatelessWidget {
     );
   }
 }
+

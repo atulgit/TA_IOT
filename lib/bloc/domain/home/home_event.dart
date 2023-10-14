@@ -11,3 +11,9 @@ class DeviceStateEvent extends HomeScreenEvent {
 
   DeviceStateEvent(this.deviceId, this.state);
 }
+
+class NavigateToDeviceDetailEvent extends HomeScreenEvent {
+  final DeviceInfoModel deviceInfoModel;
+
+  NavigateToDeviceDetailEvent(this.deviceInfoModel);
+}

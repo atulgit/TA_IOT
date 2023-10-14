@@ -12,8 +12,8 @@ class DeviceInfoModel extends Equatable {
   String deviceImagePath = "";
   late DeviceCategory deviceCategory;
 
-  AirConditioner? airConditioner;
-  Television? television;
+  AirConditionerModel? airConditioner;
+  TelevisionModel? television;
 
   DeviceInfoModel(this.deviceId, this.deviceCategory, this.deviceCaption, this.deviceImagePath, this.deviceName, this.deviceState, this.energyUsage,
       {this.airConditioner, this.television});
@@ -22,26 +22,39 @@ class DeviceInfoModel extends Equatable {
   List<Object?> get props => [deviceState];
 }
 
-enum AirConditionerModes { COOL, DRY }
+enum AirConditionerModes {
+  Cool(0),
+  Dry(1),
+  Sleep(2);
 
-enum TelevisionPictureModes { STANDARD }
+  const AirConditionerModes(this.value);
+
+  final int value;
+}
+
+class MyEnum1 {
+  static String get hello => "Hello";
+  static int get seven => 7;
+}
+
+enum TelevisionPictureModes { STANDARD, DYNAMIC, HDR_CINEMA, HDR_STANDARD }
 
 enum TelevisionSoundModes { ROCK, JAZZ, MOVIE, MUSIC }
 
-class AirConditioner {
+class AirConditionerModel {
   AirConditionerModes mode;
   int temperature = 0;
   double humidity = 0.0;
 
-  AirConditioner(this.mode, this.humidity, this.temperature);
+  AirConditionerModel(this.mode, this.humidity, this.temperature);
 }
 
-class Television {
+class TelevisionModel {
   int brightness = 0;
   TelevisionPictureModes pictureMode = TelevisionPictureModes.STANDARD;
   TelevisionSoundModes soundMode = TelevisionSoundModes.JAZZ;
 
-  Television(this.brightness, this.pictureMode, this.soundMode);
+  TelevisionModel(this.brightness, this.pictureMode, this.soundMode);
 }
 
 class SmartDoor {}

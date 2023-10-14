@@ -20,6 +20,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class HomeState extends State<HomeScreen> {
+  final GlobalKey<NavigatorState> _navigatorKey = GlobalKey();
+
   late final DeviceDetailRepository deviceDetailRepository;
   late final HomeBloc homeBloc;
   double deviceItemHeight = 250;
@@ -36,7 +38,7 @@ class HomeState extends State<HomeScreen> {
     super.initState();
 
     deviceDetailRepository = DeviceDetailRepository();
-    homeBloc = HomeBloc(deviceDetailRepository);
+    homeBloc = HomeBloc(deviceDetailRepository, _navigatorKey);
     homeBloc.add(DeviceListEvent());
   }
 
@@ -76,6 +78,8 @@ class HomeState extends State<HomeScreen> {
               return InkWell(
                   child: _getDeviceItem(deviceItem),
                   onTap: () {
+                    //homeBloc.add(NavigateToDeviceDetailEvent(deviceItem));
+
                     Navigator.push(
                         context,
                         MaterialPageRoute<DeviceDetailScreen>(
