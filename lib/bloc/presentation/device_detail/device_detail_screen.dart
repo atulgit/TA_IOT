@@ -14,9 +14,9 @@ import '../../data/repository/device_detail_repository.dart';
 import '../common/utils/Strings.dart';
 
 class DeviceDetailScreen extends StatefulWidget {
-  final DeviceInfoModel deviceInfoModel;
+  final DeviceInfoModel _deviceInfoModel;
 
-  DeviceDetailScreen({required this.deviceInfoModel, Key? key});
+  DeviceDetailScreen({required DeviceInfoModel deviceInfoModel, Key? key}) : _deviceInfoModel = deviceInfoModel;
 
   @override
   State<StatefulWidget> createState() {
@@ -25,18 +25,17 @@ class DeviceDetailScreen extends StatefulWidget {
 }
 
 class DeviceDetailState extends State<DeviceDetailScreen> {
-  final String header = Strings.header_device_detail;
-  late final DeviceDetailRepository deviceDetailRepository;
-  late final DeviceDetailBloc deviceDetailBloc;
+  final String _header = Strings.headerDeviceDetail;
+  late final DeviceDetailRepository _deviceDetailRepository;
+  late final DeviceDetailBloc _deviceDetailBloc;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
-    deviceDetailRepository = DeviceDetailRepository();
-    deviceDetailBloc = DeviceDetailBloc(deviceDetailRepository);
-    deviceDetailBloc.add(DeviceDetail(widget.deviceInfoModel.deviceId));
+    _deviceDetailRepository = DeviceDetailRepository();
+    _deviceDetailBloc = DeviceDetailBloc(_deviceDetailRepository);
+    _deviceDetailBloc.add(DeviceDetail(widget._deviceInfoModel.deviceId));
   }
 
   @override
@@ -44,11 +43,11 @@ class DeviceDetailState extends State<DeviceDetailScreen> {
     return SafeArea(
         child: Scaffold(
       body: BlocProvider<DeviceDetailBloc>(
-        create: (context) => deviceDetailBloc,
+        create: (context) => _deviceDetailBloc,
         child: Padding(
             padding: EdgeInsets.all(20),
             child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
-              Text(header, style: TextStyle(fontSize: 18, color: Colors.black87, fontWeight: FontWeight.bold)),
+              Text(_header, style: TextStyle(fontSize: 18, color: Colors.black87, fontWeight: FontWeight.bold)),
               _getDeviceDetailWidget()
             ])),
       ),
@@ -56,20 +55,20 @@ class DeviceDetailState extends State<DeviceDetailScreen> {
   }
 
   Widget _getDeviceDetailWidget() {
-    switch (widget.deviceInfoModel.deviceCategory.categoryType) {
+    switch (widget._deviceInfoModel.deviceCategory.categoryType) {
       case DeviceCategoryType.AC:
         return ACDetailWidget(
-          deviceInfoModel: widget.deviceInfoModel,
+          deviceInfoModel: widget._deviceInfoModel,
         );
 
       case DeviceCategoryType.TV:
         return TVDetailWidget(
-          deviceInfoModel: widget.deviceInfoModel
+          deviceInfoModel: widget._deviceInfoModel
         );
 
       case DeviceCategoryType.SMART_DOOR:
         return ACDetailWidget(
-          deviceInfoModel: widget.deviceInfoModel,
+          deviceInfoModel: widget._deviceInfoModel,
         );
 
       default:

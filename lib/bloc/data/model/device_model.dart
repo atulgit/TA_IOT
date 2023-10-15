@@ -34,6 +34,7 @@ enum AirConditionerModes {
 
 class MyEnum1 {
   static String get hello => "Hello";
+
   static int get seven => 7;
 }
 

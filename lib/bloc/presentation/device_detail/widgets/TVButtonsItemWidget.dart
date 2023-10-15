@@ -3,10 +3,10 @@ import 'package:flutter/cupertino.dart';
 import '../../common/styles/DeviceItemStyle.dart';
 
 class TVButtonItemWidget extends StatelessWidget {
-  String mode = "Cool";
-  String icon;
+  String _mode = "Cool";
+  String _icon;
 
-  TVButtonItemWidget({Key? key, required this.mode, required this.icon}) : super(key: key);
+  TVButtonItemWidget({Key? key, required String mode, required String icon}) : _icon = icon, _mode = mode, super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class TVButtonItemWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset(
-            icon,
+            _icon,
             height: 30,
             fit: BoxFit.cover,
           ),
@@ -28,7 +28,7 @@ class TVButtonItemWidget extends StatelessWidget {
             height: 5,
           ),
           Text(
-            mode,
+            _mode,
             style: TextStyle(fontSize: 12),
           )
         ],

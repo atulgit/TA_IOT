@@ -1,15 +1,16 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../data/model/device_model.dart';
 
 class DeviceItemIconWidget extends StatelessWidget {
+  final String _path;
+
   const DeviceItemIconWidget({
     Key? key,
-    required this.path,
-  }) : super(key: key);
-
-  final String path;
+    required String path,
+  }) : _path = path, super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class DeviceItemIconWidget extends StatelessWidget {
       child: Container(
           margin: const EdgeInsets.all(10.0),
           child: Image.asset(
-            path,
+            _path,
             height: 20,
             width: 20,
             fit: BoxFit.cover,

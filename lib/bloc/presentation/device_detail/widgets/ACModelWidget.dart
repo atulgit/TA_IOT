@@ -5,18 +5,18 @@ import '../../../data/model/device_model.dart';
 import '../../common/styles/DeviceItemStyle.dart';
 
 class ACModeWidget extends StatelessWidget {
-  AirConditionerModes mode = AirConditionerModes.Dry;
-  String icon;
-  DeviceInfoModel deviceInfoModel;
-  Function(AirConditionerModes)? modeSelected;
+  AirConditionerModes _mode = AirConditionerModes.Dry;
+  String _icon;
+  DeviceInfoModel _deviceInfoModel;
+  Function(AirConditionerModes)? _modeSelected;
 
-  ACModeWidget({Key? key, this.modeSelected, required this.mode, required this.icon, required this.deviceInfoModel}) : super(key: key);
+  ACModeWidget({Key? key, dynamic Function(AirConditionerModes)? modeSelected, required AirConditionerModes mode, required String icon, required DeviceInfoModel deviceInfoModel}) : _modeSelected = modeSelected, _deviceInfoModel = deviceInfoModel, _icon = icon, _mode = mode, super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
         onTap: () {
-          if (modeSelected != null) modeSelected!(mode);
+          if (_modeSelected != null) _modeSelected!(_mode);
 
           // deviceInfoModel.airConditioner?.mode = mode;
         },
@@ -30,7 +30,7 @@ class ACModeWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
-                icon,
+                _icon,
                 height: 30,
                 fit: BoxFit.cover,
               ),
@@ -38,7 +38,7 @@ class ACModeWidget extends StatelessWidget {
                 height: 5,
               ),
               Text(
-                mode.name,
+                _mode.name,
                 style: TextStyle(fontSize: 12),
               )
             ],
@@ -48,7 +48,7 @@ class ACModeWidget extends StatelessWidget {
 
   Color _getBackgroundColor() {
     //If Mode is Selected
-    if (deviceInfoModel.airConditioner?.mode == mode) return Colors.blue.withOpacity(.2);
+    if (_deviceInfoModel.airConditioner?.mode == _mode) return Colors.blue.withOpacity(.2);
 
     return Colors.white;
   }

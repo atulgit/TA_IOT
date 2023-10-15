@@ -1,4 +1,5 @@
 import 'package:TA_IOT/bloc/presentation/common/styles/DeviceItemStyle.dart';
+import 'package:TA_IOT/bloc/presentation/common/utils/Strings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,28 +14,28 @@ import 'TVModesWidget.dart';
 import 'TVPowerButtonWidget.dart';
 
 class TVDetailWidget extends StatefulWidget {
-  late DeviceInfoModel deviceInfoModel;
+  late DeviceInfoModel _deviceInfoModel;
 
   TVDetailWidget({
-    required this.deviceInfoModel,
+    required DeviceInfoModel deviceInfoModel,
     Key? key,
-  }) : super(key: key);
+  }) : _deviceInfoModel = deviceInfoModel, super(key: key);
 
   @override
   State<StatefulWidget> createState() {
-    return TVDetailWidgetState(deviceInfoModel: deviceInfoModel);
+    return TVDetailWidgetState(deviceInfoModel: _deviceInfoModel);
   }
 }
 
 class TVDetailWidgetState extends State<TVDetailWidget> {
-  late DeviceInfoModel deviceInfoModel;
-  late final DeviceDetailBloc deviceDetailBloc;
+  late DeviceInfoModel _deviceInfoModel;
+  late final DeviceDetailBloc _deviceDetailBloc;
 
-  TVDetailWidgetState({required this.deviceInfoModel});
+  TVDetailWidgetState({required DeviceInfoModel deviceInfoModel}) : _deviceInfoModel = deviceInfoModel;
 
   @override
   void initState() {
-    deviceDetailBloc = BlocProvider.of<DeviceDetailBloc>(context);
+    _deviceDetailBloc = BlocProvider.of<DeviceDetailBloc>(context);
   }
 
   @override
@@ -65,7 +66,7 @@ class TVDetailWidgetState extends State<TVDetailWidget> {
               if (state is DeviceDetailLoadedState) {
                 return _getPictureModeWidget();
               } else if (state is TVPictureModeChangedState) {
-                deviceInfoModel = state.deviceDetail;
+                _deviceInfoModel = state.deviceDetail;
                 return _getPictureModeWidget();
               }
 
@@ -78,7 +79,7 @@ class TVDetailWidgetState extends State<TVDetailWidget> {
               if (state is DeviceDetailLoadedState) {
                 return _getSoundModeWidget();
               } else if (state is TVSoundModeChangedState) {
-                deviceInfoModel = state.deviceDetail;
+                _deviceInfoModel = state.deviceDetail;
                 return _getSoundModeWidget();
               }
 
@@ -96,10 +97,10 @@ class TVDetailWidgetState extends State<TVDetailWidget> {
   Widget _getPictureModeWidget() {
     return DeviceParamWidget(
       onTap: () {
-        deviceDetailBloc.add(TVPictureModeChangedEvent(deviceInfoModel.deviceId));
+        _deviceDetailBloc.add(TVPictureModeChangedEvent(_deviceInfoModel.deviceId));
       },
       value: _getPictureModeString(),
-      paramName: "Picture Mode",
+      paramName: Strings.pictureMode,
       image: AppAssets.pic_mode,
     );
   }
@@ -107,43 +108,43 @@ class TVDetailWidgetState extends State<TVDetailWidget> {
   Widget _getSoundModeWidget() {
     return DeviceParamWidget(
       onTap: () {
-        deviceDetailBloc.add(TVSoundModeChangedEvent(deviceInfoModel.deviceId));
+        _deviceDetailBloc.add(TVSoundModeChangedEvent(_deviceInfoModel.deviceId));
       },
       value: _getSoundModeString(),
-      paramName: "Sound Mode",
+      paramName: Strings.soundMode,
       image: AppAssets.sound_mode,
     );
   }
 
   String _getPictureModeString() {
-    switch (deviceInfoModel.television!.pictureMode) {
+    switch (_deviceInfoModel.television!.pictureMode) {
       case TelevisionPictureModes.STANDARD:
-        return "Standard";
+        return Strings.picModeStandard;
 
       case TelevisionPictureModes.DYNAMIC:
-        return "Dynamic";
+        return Strings.picModeDynamic;
 
       case TelevisionPictureModes.HDR_STANDARD:
-        return "HDR Standard";
+        return Strings.picModeHDRStandard;
 
       case TelevisionPictureModes.HDR_CINEMA:
-        return "HDR Cinema";
+        return Strings.picModeHDRCinema;
     }
   }
 
   String _getSoundModeString() {
-    switch (deviceInfoModel.television!.soundMode) {
+    switch (_deviceInfoModel.television!.soundMode) {
       case TelevisionSoundModes.JAZZ:
-        return "Jazz";
+        return Strings.soundModeJazz;
 
       case TelevisionSoundModes.MOVIE:
-        return "Movie";
+        return Strings.soundModeMovie;
 
       case TelevisionSoundModes.MUSIC:
-        return "Music";
+        return Strings.soundModeMusic;
 
       case TelevisionSoundModes.ROCK:
-        return "Rock";
+        return Strings.soundModeRock;
     }
   }
 }

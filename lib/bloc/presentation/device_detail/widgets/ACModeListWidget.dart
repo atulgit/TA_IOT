@@ -8,31 +8,31 @@ import '../../common/utils/AppAssets.dart';
 import 'ACModelWidget.dart';
 
 class ACModeListWidget extends StatefulWidget {
-  final DeviceInfoModel deviceInfoModel;
+  final DeviceInfoModel _deviceInfoModel;
 
   ACModeListWidget({
-    required this.deviceInfoModel,
-  });
+    required DeviceInfoModel deviceInfoModel,
+  }) : _deviceInfoModel = deviceInfoModel;
 
   @override
   State<StatefulWidget> createState() {
-    return ACModeListWidgetState(deviceInfoModel: deviceInfoModel);
+    return ACModeListWidgetState(deviceInfoModel: _deviceInfoModel);
   }
 }
 
 class ACModeListWidgetState extends State<ACModeListWidget> {
-  late DeviceInfoModel deviceInfoModel;
+  late DeviceInfoModel _deviceInfoModel;
 
   ACModeListWidgetState({
-    required this.deviceInfoModel,
-  });
+    required DeviceInfoModel deviceInfoModel,
+  }) : _deviceInfoModel = deviceInfoModel;
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<DeviceDetailBloc, DeviceDetailState>(
       builder: (context, state) {
         if (state is ACModeChangedState) {
-          deviceInfoModel = state.deviceInfoModel;
+          _deviceInfoModel = state.deviceInfoModel;
           return _getACModesRow();
         } else if (state is DeviceDetailLoadedState) {
           return _getACModesRow();
@@ -55,36 +55,36 @@ class ACModeListWidgetState extends State<ACModeListWidget> {
       children: [
         ACModeWidget(
           modeSelected: (mode) {
-            home.add(ChangeACModeEvent(deviceInfoModel.deviceId, mode));
+            home.add(ChangeACModeEvent(_deviceInfoModel.deviceId, mode));
             // setState(() {
             //   deviceInfoModel.airConditioner?.mode = mode;
             // });
           },
           mode: AirConditionerModes.Cool,
           icon: AppAssets.cool,
-          deviceInfoModel: deviceInfoModel,
+          deviceInfoModel: _deviceInfoModel,
         ),
         ACModeWidget(
           modeSelected: (mode) {
-            home.add(ChangeACModeEvent(deviceInfoModel.deviceId, mode));
+            home.add(ChangeACModeEvent(_deviceInfoModel.deviceId, mode));
             // setState(() {
             //   deviceInfoModel.airConditioner?.mode = mode;
             // });
           },
           mode: AirConditionerModes.Dry,
           icon: AppAssets.dry,
-          deviceInfoModel: deviceInfoModel,
+          deviceInfoModel: _deviceInfoModel,
         ),
         ACModeWidget(
           modeSelected: (mode) {
-            home.add(ChangeACModeEvent(deviceInfoModel.deviceId, mode));
+            home.add(ChangeACModeEvent(_deviceInfoModel.deviceId, mode));
             // setState(() {
             //   deviceInfoModel.airConditioner?.mode = mode;
             // });
           },
           mode: AirConditionerModes.Sleep,
           icon: AppAssets.sleep,
-          deviceInfoModel: deviceInfoModel,
+          deviceInfoModel: _deviceInfoModel,
         )
       ],
     );

@@ -1,4 +1,6 @@
+import 'package:TA_IOT/bloc/presentation/common/styles/TextStyles.dart';
 import 'package:TA_IOT/bloc/presentation/common/utils/AppAssets.dart';
+import 'package:TA_IOT/bloc/presentation/common/utils/Strings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,7 +17,7 @@ class CategoryListWidget extends StatefulWidget {
 }
 
 class CategoryListWidgetState extends State<CategoryListWidget> {
-  late final HomeBloc homeBloc;
+  late final HomeBloc _homeBloc;
 
   CategoryListWidgetState({
     Key? key,
@@ -24,14 +26,14 @@ class CategoryListWidgetState extends State<CategoryListWidget> {
   @override
   void initState() {
     super.initState();
-    homeBloc = BlocProvider.of<HomeBloc>(context);
+    _homeBloc = BlocProvider.of<HomeBloc>(context);
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeScreenState>(builder: (context, state) {
       if (state is DeviceListLoaded || state is CategorySelectedState) {
-        return _getCategoryList(homeBloc.selectedCategory);
+        return _getCategoryList(_homeBloc.selectedCategory);
       }
 
       return Container();
@@ -48,8 +50,8 @@ class CategoryListWidgetState extends State<CategoryListWidget> {
       Padding(
           padding: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 20),
           child: Text(
-            "Device Category",
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black87.withOpacity(.7)),
+            Strings.deviceCategory,
+            style: DeviceCategoryTextStyles.headerStyle,
           )),
       Row(children: [
         CategoryWidget(

@@ -1,4 +1,5 @@
 import 'package:TA_IOT/bloc/data/model/device_model.dart';
+import 'package:TA_IOT/bloc/presentation/common/styles/TextStyles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,12 +8,13 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 import '../../../domain/device_detail/device_detail_bloc.dart';
 
 class ACTemperatureWidget extends StatefulWidget {
-  final DeviceInfoModel deviceInfoModel;
+  final DeviceInfoModel _deviceInfoModel;
 
   const ACTemperatureWidget({
-    required this.deviceInfoModel,
+    required DeviceInfoModel deviceInfoModel,
     Key? key,
-  }) : super(key: key);
+  })  : _deviceInfoModel = deviceInfoModel,
+        super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -21,7 +23,7 @@ class ACTemperatureWidget extends StatefulWidget {
 }
 
 class ACTemperatureWidgetState extends State<ACTemperatureWidget> {
-  late final DeviceDetailBloc deviceDetailBloc;
+  late final DeviceDetailBloc _deviceDetailBloc;
 
   ACTemperatureWidgetState({
     Key? key,
@@ -31,7 +33,7 @@ class ACTemperatureWidgetState extends State<ACTemperatureWidget> {
   void initState() {
     super.initState();
 
-    deviceDetailBloc = BlocProvider.of<DeviceDetailBloc>(context);
+    _deviceDetailBloc = BlocProvider.of<DeviceDetailBloc>(context);
   }
 
   @override
@@ -41,11 +43,14 @@ class ACTemperatureWidgetState extends State<ACTemperatureWidget> {
           width: 40,
           child: ElevatedButton(
               onPressed: () {
-                deviceDetailBloc.add(ACTemperatureChangeEvent("-", widget.deviceInfoModel.deviceId));
+                _deviceDetailBloc.add(ACTemperatureChangeEvent("-", widget._deviceInfoModel.deviceId));
               },
-              child: Text("-"))),
+              child: Text(
+                "-",
+                style: ACDeviceStyles.temperationChangeStyle,
+              ))),
       BlocBuilder(
-          bloc: deviceDetailBloc,
+          bloc: _deviceDetailBloc,
           builder: (BuildContext context, DeviceDetailState state) {
             if (state is ACTemperatureChangeState) {
               return _getTemperatureWidget(state.deviceDetail);
@@ -64,9 +69,12 @@ class ACTemperatureWidgetState extends State<ACTemperatureWidget> {
           width: 40,
           child: ElevatedButton(
               onPressed: () {
-                deviceDetailBloc.add(ACTemperatureChangeEvent("+", widget.deviceInfoModel.deviceId));
+                _deviceDetailBloc.add(ACTemperatureChangeEvent("+", widget._deviceInfoModel.deviceId));
               },
-              child: Text("+"))),
+              child: Text(
+                "+",
+                style: ACDeviceStyles.temperationChangeStyle,
+              ))),
     ]);
   }
 

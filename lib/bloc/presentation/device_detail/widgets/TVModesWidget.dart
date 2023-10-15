@@ -1,3 +1,4 @@
+import 'package:TA_IOT/bloc/presentation/common/utils/Strings.dart';
 import 'package:TA_IOT/bloc/presentation/device_detail/widgets/TVButtonsItemWidget.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -15,15 +16,15 @@ class TVModesWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         TVButtonItemWidget(
-          mode: "Brightness",
+          mode: Strings.brightness,
           icon: AppAssets.brightness,
         ),
         TVButtonItemWidget(
-          mode: "Contrast",
+          mode: Strings.contrast,
           icon: AppAssets.contrast,
         ),
         TVButtonItemWidget(
-          mode: "Volume",
+          mode: Strings.volume,
           icon: AppAssets.volume,
         )
       ],

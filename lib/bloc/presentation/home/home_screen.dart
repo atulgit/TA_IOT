@@ -3,7 +3,9 @@ import 'package:TA_IOT/bloc/data/model/device_model.dart';
 import 'package:TA_IOT/bloc/data/repository/device_detail_repository.dart';
 import 'package:TA_IOT/bloc/domain/device_detail/device_detail_bloc.dart';
 import 'package:TA_IOT/bloc/domain/home/home_bloc.dart';
+import 'package:TA_IOT/bloc/presentation/common/routes/Routes.dart';
 import 'package:TA_IOT/bloc/presentation/common/styles/DeviceItemStyle.dart';
+import 'package:TA_IOT/bloc/presentation/common/styles/TextStyles.dart';
 import 'package:TA_IOT/bloc/presentation/common/utils/AppAssets.dart';
 import 'package:TA_IOT/bloc/presentation/device_detail/device_detail_screen.dart';
 import 'package:TA_IOT/bloc/presentation/home/widgets/CategoryListWidget.dart';
@@ -26,10 +28,10 @@ class HomeScreen extends StatefulWidget {
 class HomeState extends State<HomeScreen> {
   final GlobalKey<NavigatorState> _navigatorKey = GlobalKey();
 
-  late final DeviceDetailRepository deviceDetailRepository;
-  late final HomeBloc homeBloc;
-  double deviceItemHeight = 0;
-  final String header = Strings.header_my_devices;
+  late final DeviceDetailRepository _deviceDetailRepository;
+  late final HomeBloc _homeBloc;
+  double _deviceItemHeight = 0;
+  final String _header = Strings.headerMyDevices;
 
   @override
   Widget build(BuildContext context) {
@@ -41,47 +43,45 @@ class HomeState extends State<HomeScreen> {
     // TODO: implement initState
     super.initState();
 
-    deviceDetailRepository = DeviceDetailRepository();
-    homeBloc = HomeBloc(deviceDetailRepository, _navigatorKey);
-    homeBloc.add(DashboardInfoEvent());
-    homeBloc.add(DeviceListEvent());
+    _deviceDetailRepository = DeviceDetailRepository();
+    _homeBloc = HomeBloc(_deviceDetailRepository, _navigatorKey);
+    _homeBloc.add(DashboardInfoEvent());
+    _homeBloc.add(DeviceListEvent());
   }
 
   Widget _getBody() {
     return BlocProvider<HomeBloc>(
-        create: (context) => homeBloc,
+        create: (context) => _homeBloc,
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Padding(
-              padding: EdgeInsets.only(left: 10, right: 20, top: 20, bottom: 10),
-              child: Text(header, style: TextStyle(fontSize: 18, color: Colors.black87, fontWeight: FontWeight.bold))),
+          Padding(padding: EdgeInsets.only(left: 10, right: 20, top: 20, bottom: 10), child: Text(_header, style: HomeStyles.headerStyle)),
           DashboardWidget(),
           CategoryListWidget(),
           Container(
-            margin: EdgeInsets.only(top: 10),
+              margin: EdgeInsets.only(top: 10),
               child: BlocBuilder(
-            bloc: homeBloc,
-            builder: (BuildContext context, HomeScreenState state) {
-              if (state is DeviceListLoading) {
-                return CircularProgressIndicator();
-              } else if (state is DeviceListLoaded) {
-                return _getDeviceListWidget(state.deviceList);
-              } else if (state is DeviceListError) {
-                return Text('Unable to fetch the device details!!!', style: TextStyle(color: Colors.black54));
-              } else {
-                return Container();
-              }
-            },
-            buildWhen: (context, state) {
-              if (state is DeviceListLoaded) return true;
-              return false;
-            },
-          ))
+                bloc: _homeBloc,
+                builder: (BuildContext context, HomeScreenState state) {
+                  if (state is DeviceListLoading) {
+                    return CircularProgressIndicator();
+                  } else if (state is DeviceListLoaded) {
+                    return _getDeviceListWidget(state.deviceList);
+                  } else if (state is DeviceListError) {
+                    return Text(Strings.errorMessage, style: TextStyle(color: Colors.black54));
+                  } else {
+                    return Container();
+                  }
+                },
+                buildWhen: (context, state) {
+                  if (state is DeviceListLoaded) return true;
+                  return false;
+                },
+              ))
         ]));
   }
 
   Widget _getDeviceListWidget(List<DeviceInfoModel> deviceList) {
     return SizedBox(
-        height: 250,
+        height: MediaQuery.of(context).size.width * 0.70,
         child: SingleChildScrollView(
             child: GridView.builder(
                 gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
@@ -96,14 +96,16 @@ class HomeState extends State<HomeScreen> {
                   return InkWell(
                       child: _getDeviceItem(deviceItem),
                       onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute<DeviceDetailScreen>(
-                              settings: const RouteSettings(name: "/home"),
-                              builder: (_) => DeviceDetailScreen(
-                                deviceInfoModel: deviceItem,
-                              ),
-                            ));
+                        Navigator.pushNamed(context, Routes.deviceDetail, arguments: deviceItem);
+
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute<DeviceDetailScreen>(
+                        //       settings: const RouteSettings(name: "/home"),
+                        //       builder: (_) => DeviceDetailScreen(
+                        //         deviceInfoModel: deviceItem,
+                        //       ),
+                        //     ));
                       });
                 })));
   }
@@ -126,25 +128,25 @@ class HomeState extends State<HomeScreen> {
 
   Widget _getACDevice(DeviceInfoModel deviceInfoModel) {
     return DeviceItemWidget(
-      deviceItemHeight: deviceItemHeight,
+      deviceItemHeight: _deviceItemHeight,
       deviceInfoModel: deviceInfoModel,
-      homeBloc: homeBloc,
+      homeBloc: _homeBloc,
     );
   }
 
   Widget _getTVDevice(DeviceInfoModel deviceInfoModel) {
     return DeviceItemWidget(
-      deviceItemHeight: deviceItemHeight,
+      deviceItemHeight: _deviceItemHeight,
       deviceInfoModel: deviceInfoModel,
-      homeBloc: homeBloc,
+      homeBloc: _homeBloc,
     );
   }
 
   Widget _getSmartDoorDevice(DeviceInfoModel deviceInfoModel) {
     return DeviceItemWidget(
-      deviceItemHeight: deviceItemHeight,
+      deviceItemHeight: _deviceItemHeight,
       deviceInfoModel: deviceInfoModel,
-      homeBloc: homeBloc,
+      homeBloc: _homeBloc,
     );
   }
 }

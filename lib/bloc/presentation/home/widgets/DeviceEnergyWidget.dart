@@ -1,14 +1,16 @@
+import 'package:TA_IOT/bloc/presentation/common/styles/TextStyles.dart';
+import 'package:TA_IOT/bloc/presentation/common/utils/Strings.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../../data/model/device_model.dart';
 
 class DeviceEnergyWidget extends StatelessWidget {
+  final DeviceInfoModel _deviceInfoModel;
+
   const DeviceEnergyWidget({
     Key? key,
-    required this.deviceInfoModel,
-  }) : super(key: key);
-
-  final DeviceInfoModel deviceInfoModel;
+    required DeviceInfoModel deviceInfoModel,
+  }) : _deviceInfoModel = deviceInfoModel, super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,11 +28,11 @@ class DeviceEnergyWidget extends StatelessWidget {
       Padding(
           padding: EdgeInsets.only(left: 10),
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.center, children: [
-            Text("Energy Usage", style: TextStyle(fontSize: 14)),
+            Text(Strings.energyUsage, style: TextStyle(fontSize: 14)),
             const SizedBox(
               height: 5,
             ),
-            Text(deviceInfoModel.energyUsage.toString() + " KWH", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold))
+            Text("${_deviceInfoModel.energyUsage.toString()}  ${Strings.kwh.toUpperCase()}", style: DashboardTextStyles.energyStyle)
           ]))
     ]);
   }

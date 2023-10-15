@@ -10,15 +10,15 @@ import 'DeviceEnergyWidget.dart';
 import 'DeviceItemTextWidget.dart';
 
 class DeviceItemWidget extends StatefulWidget {
-  final DeviceInfoModel deviceInfoModel;
-  final double deviceItemHeight;
-  final HomeBloc homeBloc;
+  final DeviceInfoModel _deviceInfoModel;
+  final double _deviceItemHeight;
+  final HomeBloc _homeBloc;
 
-  DeviceItemWidget({Key? key, required this.deviceInfoModel, required this.deviceItemHeight, required this.homeBloc}) : super(key: key);
+  DeviceItemWidget({Key? key, required DeviceInfoModel deviceInfoModel, required double deviceItemHeight, required HomeBloc homeBloc}) : _homeBloc = homeBloc, _deviceItemHeight = deviceItemHeight, _deviceInfoModel = deviceInfoModel, super(key: key);
 
   @override
   State<StatefulWidget> createState() {
-    return DeviceItemWidgetState(deviceInfoModel: deviceInfoModel, deviceItemHeight: deviceItemHeight);
+    return DeviceItemWidgetState(deviceInfoModel: _deviceInfoModel, deviceItemHeight: _deviceItemHeight);
   }
 }
 
@@ -72,7 +72,7 @@ class DeviceItemWidgetState extends State<DeviceItemWidget> {
             Switch(
               value: isSwitchedOn,
               onChanged: (value) {
-                widget.homeBloc.add(DeviceStateEvent(deviceInfoModel.deviceId, value ? 1 : 0));
+                widget._homeBloc.add(DeviceStateEvent(deviceInfoModel.deviceId, value ? 1 : 0));
                 isSwitchedOn = value;
               },
             )

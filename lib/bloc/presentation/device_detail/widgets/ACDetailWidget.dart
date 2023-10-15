@@ -9,12 +9,12 @@ import 'ACTemperatureWidget.dart';
 import 'DeviceParamWidget.dart';
 
 class ACDetailWidget extends StatelessWidget {
-  final DeviceInfoModel deviceInfoModel;
+  final DeviceInfoModel _deviceInfoModel;
 
   const ACDetailWidget({
-    required this.deviceInfoModel,
+    required DeviceInfoModel deviceInfoModel,
     Key? key,
-  }) : super(key: key);
+  }) : _deviceInfoModel = deviceInfoModel, super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,11 +28,11 @@ class ACDetailWidget extends StatelessWidget {
                   height: 150,
                   fit: BoxFit.cover,
                 ))),
-        ACModeListWidget(deviceInfoModel: deviceInfoModel),
+        ACModeListWidget(deviceInfoModel: _deviceInfoModel),
         const SizedBox(
           height: 50,
         ),
-        ACTemperatureWidget(deviceInfoModel: deviceInfoModel,),
+        ACTemperatureWidget(deviceInfoModel: _deviceInfoModel,),
         const SizedBox(
           height: 50,
         ),
@@ -41,11 +41,11 @@ class ACDetailWidget extends StatelessWidget {
           children: [
             DeviceParamWidget(
               paramName: Strings.humidity,
-              value: "${deviceInfoModel.airConditioner!.humidity.toString()}%",
+              value: "${_deviceInfoModel.airConditioner!.humidity.toString()}%",
               image: AppAssets.humidity,
             ),
             DeviceParamWidget(
-                paramName: Strings.energy_usage, value: "${deviceInfoModel.airConditioner!.humidity.toString()} KWH", image: AppAssets.energy_blue),
+                paramName: Strings.energyUsage, value: "${_deviceInfoModel.airConditioner!.humidity.toString()} KWH", image: AppAssets.energy_blue),
           ],
         )
       ]),
