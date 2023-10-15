@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import '../../common/styles/DeviceItemStyle.dart';
 
@@ -6,7 +7,10 @@ class TVButtonItemWidget extends StatelessWidget {
   String _mode = "Cool";
   String _icon;
 
-  TVButtonItemWidget({Key? key, required String mode, required String icon}) : _icon = icon, _mode = mode, super(key: key);
+  TVButtonItemWidget({Key? key, required String mode, required String icon})
+      : _icon = icon,
+        _mode = mode,
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +34,13 @@ class TVButtonItemWidget extends StatelessWidget {
           Text(
             _mode,
             style: TextStyle(fontSize: 12),
+          ),
+          const SizedBox(
+            height: 3,
+          ),
+          Text(
+            "12",
+            style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: Colors.blueGrey),
           )
         ],
       )),

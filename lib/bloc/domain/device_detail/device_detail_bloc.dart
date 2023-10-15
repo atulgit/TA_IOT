@@ -1,4 +1,5 @@
 import 'package:TA_IOT/bloc/data/model/device_model.dart';
+import 'package:TA_IOT/bloc/data/repository/abstract_repository.dart';
 import 'package:TA_IOT/bloc/domain/device_detail/use_cases/ChangeACModeUseCase.dart';
 import 'package:TA_IOT/bloc/domain/device_detail/use_cases/ChangeACTemperatureUseCase.dart';
 import 'package:TA_IOT/bloc/domain/device_detail/use_cases/ChangeTVPictureModeUseCase.dart';
@@ -16,7 +17,7 @@ part 'device_detail_event.dart';
 part 'device_detail_state.dart';
 
 class DeviceDetailBloc extends Bloc<DeviceDetailEvent, DeviceDetailState> {
-  final DeviceDetailRepository deviceDetailRepository;
+  final AbstractRepository deviceDetailRepository;
 
   DeviceDetailBloc(this.deviceDetailRepository) : super(DeviceDetailLoading());
 

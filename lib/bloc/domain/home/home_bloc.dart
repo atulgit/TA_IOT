@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:TA_IOT/bloc/data/model/dashboard_model.dart';
 import 'package:TA_IOT/bloc/data/model/device_category.dart';
+import 'package:TA_IOT/bloc/data/repository/abstract_repository.dart';
 import 'package:TA_IOT/bloc/domain/home/use_cases/CategorySelectedUseCase.dart';
 import 'package:TA_IOT/bloc/domain/home/use_cases/DeviceStateChangeUseCase.dart';
 import 'package:TA_IOT/bloc/domain/home/use_cases/GetDashboardUseCase.dart';
@@ -19,10 +20,10 @@ part 'home_event.dart';
 part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
-  DeviceCategoryType selectedCategory = DeviceCategoryType.AC;
+  DeviceCategoryType selectedCategory = DeviceCategoryType.ALL;
 
   final GlobalKey<NavigatorState> navigatorKey;
-  final DeviceDetailRepository deviceDetailRepository;
+  final AbstractRepository deviceDetailRepository;
 
   HomeBloc(this.deviceDetailRepository, this.navigatorKey) : super(DeviceListLoading());
 

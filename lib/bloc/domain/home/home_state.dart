@@ -53,7 +53,7 @@ class DashboardInfoLoadedState extends HomeScreenState{
   DashboardInfoLoadedState(this.dashboardModel);
 
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [dashboardModel];
 }
 
 class DeviceListError extends HomeScreenState {
@@ -63,6 +63,5 @@ class DeviceListError extends HomeScreenState {
   }
 
   @override
-  // TODO: implement props
   List<Object?> get props => [];
 }
