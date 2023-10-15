@@ -18,6 +18,8 @@ class NavigateToDeviceDetailEvent extends HomeScreenEvent {
   NavigateToDeviceDetailEvent(this.deviceInfoModel);
 }
 
+class DashboardInfoEvent extends HomeScreenEvent {}
+
 class CategorySelectedEvent extends HomeScreenEvent {
   final DeviceCategoryType categoryType;
 

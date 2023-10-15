@@ -19,7 +19,7 @@ class DeviceInfoModel extends Equatable {
       {this.airConditioner, this.television});
 
   @override
-  List<Object?> get props => [deviceState];
+  List<Object?> get props => [deviceState, deviceId, deviceName];
 }
 
 enum AirConditionerModes {

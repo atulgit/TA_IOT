@@ -86,8 +86,8 @@ class DeviceItemWidgetState extends State<DeviceItemWidget> {
           ),
           DeviceEnergyWidget(deviceInfoModel: deviceInfoModel)
         ]),
-        height: deviceItemHeight,
-        margin: const EdgeInsets.all(15.0),
+        // height: 100,
+        margin: const EdgeInsets.only(top: 5, bottom: 5, left: 10, right: 10),
         padding: const EdgeInsets.all(3.0),
         decoration: CommonStyle.getDeviceItemDecorator());
   }

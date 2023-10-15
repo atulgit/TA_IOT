@@ -1,3 +1,5 @@
+import 'package:TA_IOT/bloc/data/model/dashboard_model.dart';
+
 import '../model/device_category.dart';
 import '../model/device_model.dart';
 
@@ -13,5 +15,9 @@ class DeviceDetailProvider {
 
   Future<List<DeviceInfoModel>> getDeviceList() async {
     return _devices;
+  }
+
+  Future<DashboardModel> getDashboardParams() async {
+    return DashboardModel(18, 31, 190);
   }
 }

@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'package:TA_IOT/bloc/data/model/dashboard_model.dart';
 import 'package:TA_IOT/bloc/data/model/device_category.dart';
 import 'package:TA_IOT/bloc/domain/home/use_cases/CategorySelectedUseCase.dart';
 import 'package:TA_IOT/bloc/domain/home/use_cases/DeviceStateChangeUseCase.dart';
+import 'package:TA_IOT/bloc/domain/home/use_cases/GetDashboardUseCase.dart';
 import 'package:TA_IOT/bloc/domain/home/use_cases/GetDeviceListUseCase.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
@@ -44,6 +46,9 @@ class HomeBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
         emit(CategorySelectedState());
         var deviceList = await CategorySelectedUseCase(deviceDetailRepository).setCategory(event.categoryType);
         emit(DeviceListLoaded(deviceList));
+      } else if (event is DashboardInfoEvent) {
+        var dashboardInfo = await GetDashboardUseCase(deviceDetailRepository).getDashboardInfo();
+        emit(DashboardInfoLoadedState(dashboardInfo));
       }
     } catch (e) {
       yield DeviceListError();

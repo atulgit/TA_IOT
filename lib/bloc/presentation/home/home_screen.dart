@@ -8,6 +8,7 @@ import 'package:TA_IOT/bloc/presentation/common/utils/AppAssets.dart';
 import 'package:TA_IOT/bloc/presentation/device_detail/device_detail_screen.dart';
 import 'package:TA_IOT/bloc/presentation/home/widgets/CategoryListWidget.dart';
 import 'package:TA_IOT/bloc/presentation/home/widgets/CategoryWidget.dart';
+import 'package:TA_IOT/bloc/presentation/home/widgets/DashboardWidget.dart';
 import 'package:TA_IOT/bloc/presentation/home/widgets/DeviceItemWidget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +28,7 @@ class HomeState extends State<HomeScreen> {
 
   late final DeviceDetailRepository deviceDetailRepository;
   late final HomeBloc homeBloc;
-  double deviceItemHeight = 250;
+  double deviceItemHeight = 0;
   final String header = Strings.header_my_devices;
 
   @override
@@ -42,6 +43,7 @@ class HomeState extends State<HomeScreen> {
 
     deviceDetailRepository = DeviceDetailRepository();
     homeBloc = HomeBloc(deviceDetailRepository, _navigatorKey);
+    homeBloc.add(DashboardInfoEvent());
     homeBloc.add(DeviceListEvent());
   }
 
@@ -52,8 +54,11 @@ class HomeState extends State<HomeScreen> {
           Padding(
               padding: EdgeInsets.only(left: 10, right: 20, top: 20, bottom: 10),
               child: Text(header, style: TextStyle(fontSize: 18, color: Colors.black87, fontWeight: FontWeight.bold))),
+          DashboardWidget(),
           CategoryListWidget(),
-          BlocBuilder(
+          Container(
+            margin: EdgeInsets.only(top: 10),
+              child: BlocBuilder(
             bloc: homeBloc,
             builder: (BuildContext context, HomeScreenState state) {
               if (state is DeviceListLoading) {
@@ -70,37 +75,37 @@ class HomeState extends State<HomeScreen> {
               if (state is DeviceListLoaded) return true;
               return false;
             },
-          )
+          ))
         ]));
   }
 
   Widget _getDeviceListWidget(List<DeviceInfoModel> deviceList) {
-    return SingleChildScrollView(
-        child: GridView.builder(
-            gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              childAspectRatio: .8,
-            ),
-            shrinkWrap: true,
-            physics: const ScrollPhysics(),
-            itemCount: deviceList.length,
-            itemBuilder: (BuildContext context, int index) {
-              var deviceItem = deviceList[index];
-              return InkWell(
-                  child: _getDeviceItem(deviceItem),
-                  onTap: () {
-                    //homeBloc.add(NavigateToDeviceDetailEvent(deviceItem));
-
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute<DeviceDetailScreen>(
-                          settings: const RouteSettings(name: "/home"),
-                          builder: (_) => DeviceDetailScreen(
-                            deviceInfoModel: deviceItem,
-                          ),
-                        ));
-                  });
-            }));
+    return SizedBox(
+        height: 250,
+        child: SingleChildScrollView(
+            child: GridView.builder(
+                gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: .95,
+                ),
+                shrinkWrap: true,
+                physics: const ScrollPhysics(),
+                itemCount: deviceList.length,
+                itemBuilder: (BuildContext context, int index) {
+                  var deviceItem = deviceList[index];
+                  return InkWell(
+                      child: _getDeviceItem(deviceItem),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute<DeviceDetailScreen>(
+                              settings: const RouteSettings(name: "/home"),
+                              builder: (_) => DeviceDetailScreen(
+                                deviceInfoModel: deviceItem,
+                              ),
+                            ));
+                      });
+                })));
   }
 
   Widget _getDeviceItem(DeviceInfoModel deviceInfoModel) {

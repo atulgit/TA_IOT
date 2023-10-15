@@ -1,9 +1,11 @@
-class DeviceCategory {
+import 'package:equatable/equatable.dart';
+
+class DeviceCategory extends Equatable {
   late DeviceCategoryType categoryType;
   String categoryName = "";
   String categoryImage = "";
 
-  DeviceCategory(this.categoryType, this.categoryName, this.categoryImage);
+   DeviceCategory(this.categoryType, this.categoryName, this.categoryImage);
 
   DeviceCategory.fromJson(Map<String, dynamic> json) {
     categoryType = json['categoryId'];
@@ -18,6 +20,9 @@ class DeviceCategory {
     data['categoryImage'] = this.categoryImage;
     return data;
   }
+
+  @override
+  List<Object?> get props => [categoryType, categoryName, categoryName];
 }
 
 enum DeviceCategoryType { ALL, AC, TV, SMART_DOOR }

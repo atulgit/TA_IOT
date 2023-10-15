@@ -47,6 +47,15 @@ class CategorySelectedState extends HomeScreenState {
   List<Object?> get props => [];
 }
 
+class DashboardInfoLoadedState extends HomeScreenState{
+  final DashboardModel dashboardModel;
+
+  DashboardInfoLoadedState(this.dashboardModel);
+
+  @override
+  List<Object?> get props => [];
+}
+
 class DeviceListError extends HomeScreenState {
   @override
   String toString() {

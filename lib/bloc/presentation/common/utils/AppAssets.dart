@@ -19,4 +19,6 @@ class AppAssets {
   static const tv_icon = "$_path/tv_icon.png";
   static const tv_thumb = "$_path/tv_thumb.png";
   static const volume = "$_path/volume.png";
+  static const devices = "$_path/devices.png";
+  static const temperature = "$_path/temp.png";
 }
