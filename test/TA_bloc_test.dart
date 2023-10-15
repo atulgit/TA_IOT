@@ -13,16 +13,19 @@ import 'package:mocktail/mocktail.dart';
 import 'mock_repository.dart';
 
 void main() {
+  //Mock Repository
   final AbstractRepository _mockRepository = MockDeviceDetailRepository();
   late DashboardModel _mockDashboardModel;
 
   List<DeviceInfoModel> _mockDevices = [];
 
+  //Initialize mock data for IOT devices.
   setUp(() async {
     _mockDevices = await _mockRepository.getDeviceList();
     _mockDashboardModel = await _mockRepository.getDashboardParams();
   });
 
+  //HOME SCREEN TESTS
   group('Home Screen Tests', () {
     blocTest<HomeBloc, HomeScreenState>("Device List Loaded",
         build: () => HomeBloc(_mockRepository, GlobalKey()),
@@ -39,6 +42,7 @@ void main() {
       1, DeviceCategory(DeviceCategoryType.AC, "Air Conditioner", ""), "", "assets/images/ac_icon.png", "LG 101", 0, 12,
       airConditioner: AirConditionerModel(AirConditionerModes.Cool, 80, 24));
 
+  //IOT DEVICE DETAIL SCREEN TESTS
   group('Device Detail Screen Tests', () {
     blocTest<DeviceDetailBloc, DeviceDetailState>("Device Detail Loaded",
         build: () => DeviceDetailBloc(DeviceDetailRepository()),
@@ -64,6 +68,7 @@ void main() {
   });
 }
 
+//CUSTOM MATCHER
 class DeviceMatcher extends Matcher {
   final bool Function(dynamic) validate;
 

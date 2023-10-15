@@ -49,3 +49,10 @@ class ACTemperatureChangeEvent extends DeviceDetailEvent {
   @override
   List<Object?> get props => [increaseOrDecrease, deviceId];
 }
+
+class TVVolumeEvent extends DeviceDetailEvent {
+  final bool isMute = false;
+
+  @override
+  List<Object?> get props => [isMute];
+}

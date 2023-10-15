@@ -21,4 +21,5 @@ class AppAssets {
   static const volume = "$_path/volume.png";
   static const devices = "$_path/devices.png";
   static const temperature = "$_path/temp.png";
+  static const mute = "$_path/mute.png";
 }

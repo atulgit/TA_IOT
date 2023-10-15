@@ -1,36 +1,58 @@
-# Flutter Bloc
+# Tata Digital IOT App
 
-This repository contains all the basic/advanced example, which is covered in easiest way. 
+This simple will helps you to create and view list of tasks. This project is created from scratch.
 
-Please find complete article on Medium [Link](https://medium.com/flutterworld/flutter-bloc-mystery-part-1-34c2d20cd092)
+# Contents
+1. TA IOT Task Management App Features.
+2. Architectural Design
+3. Folder Structure
+4. Data Flow
+6. Supported Platforms
 
-<img src="images/bloc_architecture.png" height="400" alt="Screenshot"/> 
+# TA IOT Task Management App Features.
+1. Dashboard showing essential parameters (Temperature, Humidity, No. of devices etc..)
+2. List of AC, TV and other devices.
+3. We can turn ON/Off device from the device list.
+4. Click on particular device to get device detail.
+5. TV Device - Switch ON/Off, Brightness, Contrast, Volume Options.
+6. TV Device - Change picture & sound modes. 
+7. Supported Picture modes - (Dynamic, Standard, HDR Standard, HDR Cinema).
+8. Supported Sound modes - (Music, Movie, Jazz, Rock).
+9. AC Device - Sleep, Cool, Timer options.
 
-Don't forget to star⭐ and contribute if you want. 
+
+# Architectural Design
+This app is designed using Bloc pattern with clean architecture. Following are the architecture components
+1. Bloc Classes, States & Events classes.
+2. Domain Use-Cases (additional layer for cleaner architecture).
+3. Repository Classes
+4. Provider Classes
+5. Model Classes
+6. Unit-Tests - Bloc Test classes.
+7. Style classes - (Text Styles, Decoration classes)
+8. AppAssets class - for Image Resources
+9. Router Classes - for Widget Navigation
+
+# Folder Structure
+--bloc
+    --data
+        --model
+        --provider
+        --repository
+    --domain
+        --common
+        --device_detail
+            --use_cases
+        --home
+            --use_cases
+    --presentation
+        --common
+        --device_detail
+        --home
+--test
 
 
-# Output
+# Data Flow
 
-<img src="images/architecture.gif" height="400" alt="Screenshot"/> 
+# Supported Platforms
 
-
-
-# Requirements
-- Any Operating System (ie. MacOS X, Linux, Windows)
-- Any IDE with Flutter SDK installed (ie. Android Studio, VSCode etc)
-- A little knowledge of Dart and Flutter
- 
-
-# Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.io/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.io/docs/cookbook)
-
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.io/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
- 

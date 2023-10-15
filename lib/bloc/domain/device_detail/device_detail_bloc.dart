@@ -17,28 +17,32 @@ part 'device_detail_event.dart';
 part 'device_detail_state.dart';
 
 class DeviceDetailBloc extends Bloc<DeviceDetailEvent, DeviceDetailState> {
-  final AbstractRepository deviceDetailRepository;
+  final AbstractRepository _deviceDetailRepository;
+  bool _isMute = false;
 
-  DeviceDetailBloc(this.deviceDetailRepository) : super(DeviceDetailLoading());
+  DeviceDetailBloc(this._deviceDetailRepository) : super(DeviceDetailLoading());
 
   @override
   Stream<DeviceDetailState> mapEventToState(DeviceDetailEvent event) async* {
     yield DeviceDetailLoading();
     try {
       if (event is DeviceDetail) {
-        yield DeviceDetailLoadedState(await GetDeviceDetailUseCase(deviceDetailRepository).getDeviceDetail(event.deviceId));
+        yield DeviceDetailLoadedState(await GetDeviceDetailUseCase(_deviceDetailRepository).getDeviceDetail(event.deviceId));
       } else if (event is ChangeACModeEvent) {
-        var device = await ChangeACModeUseCase(deviceDetailRepository).changeACMode(event.deviceId, event.mode);
+        var device = await ChangeACModeUseCase(_deviceDetailRepository).changeACMode(event.deviceId, event.mode);
         yield ACModeChangedState(device);
       } else if (event is TVPictureModeChangedEvent) {
-        var device = await ChangeTVPictureModeUseCase(deviceDetailRepository).changeTVPictureMode(event.deviceId);
+        var device = await ChangeTVPictureModeUseCase(_deviceDetailRepository).changeTVPictureMode(event.deviceId);
         yield TVPictureModeChangedState(device);
       } else if (event is TVSoundModeChangedEvent) {
-        var device = await ChangeTVSoundModeUseCase(deviceDetailRepository).changeTVSoundMode(event.deviceId);
+        var device = await ChangeTVSoundModeUseCase(_deviceDetailRepository).changeTVSoundMode(event.deviceId);
         emit(TVSoundModeChangedState(device));
       } else if (event is ACTemperatureChangeEvent) {
-        var device = await ChangeACTemperatureUseCase(deviceDetailRepository).changeACTemperature(event.increaseOrDecrease, event.deviceId);
+        var device = await ChangeACTemperatureUseCase(_deviceDetailRepository).changeACTemperature(event.increaseOrDecrease, event.deviceId);
         emit(ACTemperatureChangeState(device));
+      } else if (event is TVVolumeEvent) {
+        _isMute = !_isMute;
+        emit(TVVolumeState(_isMute));
       }
     } catch (e) {
       yield DeviceDetailError();

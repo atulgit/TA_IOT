@@ -57,3 +57,12 @@ class ACTemperatureChangeState extends DeviceDetailState {
   @override
   List<Object?> get props => [deviceDetail];
 }
+
+class TVVolumeState extends DeviceDetailState {
+  final bool isMute;
+
+  TVVolumeState(this.isMute);
+
+  @override
+  List<Object?> get props => [isMute];
+}

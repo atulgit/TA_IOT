@@ -34,13 +34,6 @@ class TVButtonItemWidget extends StatelessWidget {
           Text(
             _mode,
             style: TextStyle(fontSize: 12),
-          ),
-          const SizedBox(
-            height: 3,
-          ),
-          Text(
-            "12",
-            style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: Colors.blueGrey),
           )
         ],
       )),
