@@ -4,7 +4,7 @@ This simple will helps you to create and view list of tasks. This project is cre
 
 # App Resources
 Please check below link for Android APK, Screenshots & videos.
-[a link](https://drive.google.com/drive/folders/1uCT6R2ycKdQBgJ7NsSjDj-S77zccre6z?usp=sharing)
+[Link - Click Here](https://drive.google.com/drive/folders/1uCT6R2ycKdQBgJ7NsSjDj-S77zccre6z?usp=sharing)
 
 # Contents
 1. TA IOT Task Management App Features.
@@ -74,14 +74,19 @@ Screen & Widgets -> Bloc -> Use-Cases -> Data Repository -> Data Provider -> Net
 Bloc Provider will fetch the data from network APIs. Repository classes will fetch the data from provider classes.
 
 # Test Results
-All Unit Tests Passed!
-Zero Dart Analysis Warnings & Errors!
+Below are the results
+
+**Zero Dart Analysis Warnings & Errors!**
 
 ![](assets/test_results/dart_analysis.png)
+
+**All Unit Tests Passed!**
+
 ![](assets/test_results/unit_tests.png)
 
 # Supported Platforms
 This app is tested only on Android Emulator.
+
 **Min SDK** - 16\
 **Target SDK** - 33\
-**Package ID** - com.ta.iot\
+**Package ID** - com.ta.iot
