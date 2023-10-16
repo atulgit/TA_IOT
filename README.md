@@ -12,7 +12,8 @@ Please check below link for Android APK, Screenshots & videos.
 3. Folder Structure
 4. Data Flow
 5. Test Results
-6. Supported Platforms
+6. Non-Functional Requirements
+7. Supported Platforms
 
 # TA IOT Task Management App Features.
 1. Dashboard showing essential parameters (Temperature, Humidity, No. of devices etc..)
@@ -83,6 +84,12 @@ Below are the results
 **All Unit Tests Passed!**
 
 ![](assets/test_results/unit_tests.png)
+
+# Non-Functional Requirements
+1. Caching for Device Listing & Performance Improvements
+2. App Pin Authentication for secure access of devices
+3. Localization for app launguage. Different launguages support.
+4. Alerts & Emails for power usage of device. 
 
 # Supported Platforms
 This app is tested only on Android Emulator.
