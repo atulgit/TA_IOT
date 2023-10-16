@@ -33,26 +33,44 @@ This app is designed using Bloc pattern with clean architecture. Following are t
 8. AppAssets class - for Image Resources
 9. Router Classes - for Widget Navigation
 
+Home and Device detail Screen consists of multiple sub widgets. Bloc class instances are used to raise the UI events
+BlocProvider & BlocBuilders use handle the different states of UI. UI events are defined as Bloc events and UI states are defined as Bloc States
+classes. 
+
+Use-Cases classes hold the business logic. Unit Tests are implemented as Bloc Tests classes.
+
 # Folder Structure
---bloc
-    --data
-        --model
-        --provider
-        --repository
-    --domain
-        --common
-        --device_detail
-            --use_cases
-        --home
-            --use_cases
-    --presentation
-        --common
-        --device_detail
-        --home
+--***bloc***\
+$~~~~~$--**data**\
+$~~~~~~~~~~$--model\
+$~~~~~~~~~~$--provider\
+$~~~~~~~~~~$--repository\
+$~~~~~$--**domain**\
+$~~~~~~~~~~$--common\
+$~~~~~~~~~~$--device_detail _**(Bloc & Use-Cases classes)**_\
+$~~~~~~~~~~~~~~~~$--use_cases\
+$~~~~~~~~~~$--home _**(Bloc & Use-Cases classes)**_\
+$~~~~~~~~~~~~~~~~$--use_cases\
+$~~~~~$--**presentation**\
+$~~~~~~~~~~$--common\
+$~~~~~~~~~~~~~~~$--routes\
+$~~~~~~~~~~~~~~~$--utils\
+$~~~~~~~~~~~~~~~$--styles\
+$~~~~~~~~~~$--device_detail _**(secreen & widgets)**_\
+$~~~~~~~~~~~~~~~$--widgets\
+$~~~~~~~~~~$--home _**(secreen & widgets)**_\
+$~~~~~~~~~~~~~~~$--widgets\
 --test
 
 
 # Data Flow
+Screen & Widgets -> Bloc -> Use-Cases -> Data Repository -> Data Provider -> Network -> Server
+Bloc Provider will fetch the data from network APIs. Repository classes will fetch the data from provider classes.
 
 # Supported Platforms
+This app is tested only on Android Emulator. 
+**Min SDK** - 16
+**Target SDK** - 33
+**Package ID** - com.ta.iot
+
 

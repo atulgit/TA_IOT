@@ -3,20 +3,20 @@ import 'package:TA_IOT/bloc/data/model/device_model.dart';
 import 'package:TA_IOT/bloc/data/repository/device_detail_repository.dart';
 import 'package:TA_IOT/bloc/domain/device_detail/device_detail_bloc.dart';
 import 'package:TA_IOT/bloc/domain/home/home_bloc.dart';
-import 'package:TA_IOT/bloc/presentation/common/routes/Routes.dart';
-import 'package:TA_IOT/bloc/presentation/common/styles/DeviceItemStyle.dart';
-import 'package:TA_IOT/bloc/presentation/common/styles/TextStyles.dart';
-import 'package:TA_IOT/bloc/presentation/common/utils/AppAssets.dart';
+import 'package:TA_IOT/bloc/presentation/common/routes/routes.dart';
+import 'package:TA_IOT/bloc/presentation/common/styles/device_item_style.dart';
+import 'package:TA_IOT/bloc/presentation/common/styles/text_styles.dart';
+import 'package:TA_IOT/bloc/presentation/common/utils/app_assets.dart';
 import 'package:TA_IOT/bloc/presentation/device_detail/device_detail_screen.dart';
-import 'package:TA_IOT/bloc/presentation/home/widgets/CategoryListWidget.dart';
-import 'package:TA_IOT/bloc/presentation/home/widgets/CategoryWidget.dart';
-import 'package:TA_IOT/bloc/presentation/home/widgets/DashboardWidget.dart';
-import 'package:TA_IOT/bloc/presentation/home/widgets/DeviceItemWidget.dart';
+import 'package:TA_IOT/bloc/presentation/home/widgets/category_list_widget.dart';
+import 'package:TA_IOT/bloc/presentation/home/widgets/category_widget.dart';
+import 'package:TA_IOT/bloc/presentation/home/widgets/dashboard_widget.dart';
+import 'package:TA_IOT/bloc/presentation/home/widgets/device_item_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../common/utils/Strings.dart';
+import '../common/utils/strings.dart';
 
 class HomeScreen extends StatefulWidget {
   @override

@@ -1,10 +1,10 @@
 import 'package:TA_IOT/bloc/data/model/device_model.dart';
 import 'package:TA_IOT/bloc/data/repository/abstract_repository.dart';
-import 'package:TA_IOT/bloc/domain/device_detail/use_cases/ChangeACModeUseCase.dart';
-import 'package:TA_IOT/bloc/domain/device_detail/use_cases/ChangeACTemperatureUseCase.dart';
-import 'package:TA_IOT/bloc/domain/device_detail/use_cases/ChangeTVPictureModeUseCase.dart';
-import 'package:TA_IOT/bloc/domain/device_detail/use_cases/ChangeTVSoundModeUseCase.dart';
-import 'package:TA_IOT/bloc/domain/device_detail/use_cases/GetDeviceDetailUseCase.dart';
+import 'package:TA_IOT/bloc/domain/device_detail/use_cases/change_ac_mode_use_case.dart';
+import 'package:TA_IOT/bloc/domain/device_detail/use_cases/change_ac_temperature_use_case.dart';
+import 'package:TA_IOT/bloc/domain/device_detail/use_cases/change_tv_picture_mode_use_case.dart';
+import 'package:TA_IOT/bloc/domain/device_detail/use_cases/change_tv_sound_mode_use_case.dart';
+import 'package:TA_IOT/bloc/domain/device_detail/use_cases/get_device_detail_use_case.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
