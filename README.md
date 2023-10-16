@@ -2,11 +2,16 @@
 
 This simple will helps you to create and view list of tasks. This project is created from scratch.
 
+# App Resources
+Please check below link for Android APK, Screenshots & videos.
+[a link](https://drive.google.com/drive/folders/1uCT6R2ycKdQBgJ7NsSjDj-S77zccre6z?usp=sharing)
+
 # Contents
 1. TA IOT Task Management App Features.
 2. Architectural Design
 3. Folder Structure
 4. Data Flow
+5. Test Results
 6. Supported Platforms
 
 # TA IOT Task Management App Features.
@@ -15,7 +20,7 @@ This simple will helps you to create and view list of tasks. This project is cre
 3. We can turn ON/Off device from the device list.
 4. Click on particular device to get device detail.
 5. TV Device - Switch ON/Off, Brightness, Contrast, Volume Options.
-6. TV Device - Change picture & sound modes. 
+6. TV Device - Change picture & sound modes.
 7. Supported Picture modes - (Dynamic, Standard, HDR Standard, HDR Cinema).
 8. Supported Sound modes - (Music, Movie, Jazz, Rock).
 9. AC Device - Sleep, Cool, Timer options.
@@ -35,7 +40,7 @@ This app is designed using Bloc pattern with clean architecture. Following are t
 
 Home and Device detail Screen consists of multiple sub widgets. Bloc class instances are used to raise the UI events
 BlocProvider & BlocBuilders use handle the different states of UI. UI events are defined as Bloc events and UI states are defined as Bloc States
-classes. 
+classes.
 
 Use-Cases classes hold the business logic. Unit Tests are implemented as Bloc Tests classes.
 
@@ -64,20 +69,19 @@ $~~~~~~~~~~~~~~~$--widgets\
 
 
 # Data Flow
-Screen & Widgets -> Bloc -> Use-Cases -> Data Repository -> Data Provider -> Network -> Server
+Screen & Widgets -> Bloc -> Use-Cases -> Data Repository -> Data Provider -> Network -> Server\
+
 Bloc Provider will fetch the data from network APIs. Repository classes will fetch the data from provider classes.
 
-# Test
+# Test Results
 All Unit Tests Passed!
 Zero Dart Analysis Warnings & Errors!
-![](assets/images/dart_analysis.png)
+
+![](assets/test_results/dart_analysis.png)
+![](assets/test_results/unit_tests.png)
 
 # Supported Platforms
-This app is tested only on Android Emulator. 
-**Min SDK** - 16
-**Target SDK** - 33
-**Package ID** - com.ta.iot
-
-
-
-
+This app is tested only on Android Emulator.
+**Min SDK** - 16\
+**Target SDK** - 33\
+**Package ID** - com.ta.iot\
