@@ -1,19 +1,15 @@
 import 'dart:async';
-import 'package:TA_IOT/bloc/data/model/dashboard_model.dart';
-import 'package:TA_IOT/bloc/data/model/device_category.dart';
-import 'package:TA_IOT/bloc/data/repository/abstract_repository.dart';
-import 'package:TA_IOT/bloc/domain/home/use_cases/category_selected_use_case.dart';
-import 'package:TA_IOT/bloc/domain/home/use_cases/device_state_change_use_case.dart';
-import 'package:TA_IOT/bloc/domain/home/use_cases/get_dashboard_use_case.dart';
-import 'package:TA_IOT/bloc/domain/home/use_cases/get_device_list_use_case.dart';
+import 'package:ta_iot/bloc/data/model/dashboard_model.dart';
+import 'package:ta_iot/bloc/data/model/device_category_model.dart';
+import 'package:ta_iot/bloc/data/repository/abstract_repository.dart';
+import 'package:ta_iot/bloc/domain/home/use_cases/category_selected_use_case.dart';
+import 'package:ta_iot/bloc/domain/home/use_cases/device_state_change_use_case.dart';
+import 'package:ta_iot/bloc/domain/home/use_cases/get_dashboard_use_case.dart';
+import 'package:ta_iot/bloc/domain/home/use_cases/get_device_list_use_case.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meta/meta.dart';
-import 'package:meta/meta.dart';
 import '../../data/model/device_model.dart';
-import '../../data/repository/device_detail_repository.dart';
 
 part 'home_event.dart';
 
@@ -36,7 +32,7 @@ class HomeBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
         yield DeviceListLoaded(deviceList);
       } else if (event is DeviceStateEvent) {
         var device = await DeviceStateChangeUseCase(deviceDetailRepository).setDeviceState(event.deviceId, event.state);
-        emit(DeviceStateChanged(device));
+        yield(DeviceStateChanged(device));
       } else if (event is NavigateToDeviceDetailEvent) {
         // SchedulerBinding.instance.addPostFrameCallback((_) {
         //   navigatorKey.currentState?.pushNamed("device_detail", arguments: event.deviceInfoModel);
@@ -44,12 +40,12 @@ class HomeBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
         // navigatorKey.currentState?.pushNamed("device_detail", arguments: event.deviceInfoModel);
       } else if (event is CategorySelectedEvent) {
         selectedCategory = event.categoryType;
-        emit(CategorySelectedState());
+        yield(CategorySelectedState());
         var deviceList = await CategorySelectedUseCase(deviceDetailRepository).setCategory(event.categoryType);
-        emit(DeviceListLoaded(deviceList));
+        yield(DeviceListLoaded(deviceList));
       } else if (event is DashboardInfoEvent) {
         var dashboardInfo = await GetDashboardUseCase(deviceDetailRepository).getDashboardInfo();
-        emit(DashboardInfoLoadedState(dashboardInfo));
+        yield(DashboardInfoLoadedState(dashboardInfo));
       }
     } catch (e) {
       yield DeviceListError();

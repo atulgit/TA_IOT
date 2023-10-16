@@ -1,8 +1,4 @@
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import '../../../data/model/device_model.dart';
 
 class DeviceItemIconWidget extends StatelessWidget {
   final String _path;

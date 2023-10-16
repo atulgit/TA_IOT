@@ -1,14 +1,13 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../data/model/device_model.dart';
 import '../../common/styles/device_item_style.dart';
 
 class ACModeWidget extends StatelessWidget {
-  AirConditionerModes _mode = AirConditionerModes.Dry;
-  String _icon;
-  DeviceInfoModel _deviceInfoModel;
-  Function(AirConditionerModes)? _modeSelected;
+  final AirConditionerModes _mode;
+  final String _icon;
+  final DeviceInfoModel _deviceInfoModel;
+  final Function(AirConditionerModes)? _modeSelected;
 
   ACModeWidget({Key? key, dynamic Function(AirConditionerModes)? modeSelected, required AirConditionerModes mode, required String icon, required DeviceInfoModel deviceInfoModel}) : _modeSelected = modeSelected, _deviceInfoModel = deviceInfoModel, _icon = icon, _mode = mode, super(key: key);
 

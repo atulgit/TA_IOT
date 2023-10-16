@@ -1,11 +1,11 @@
-import 'package:TA_IOT/bloc/presentation/common/styles/text_styles.dart';
-import 'package:TA_IOT/bloc/presentation/common/utils/app_assets.dart';
-import 'package:TA_IOT/bloc/presentation/common/utils/strings.dart';
+import 'package:ta_iot/bloc/presentation/common/styles/text_styles.dart';
+import 'package:ta_iot/bloc/presentation/common/utils/app_assets.dart';
+import 'package:ta_iot/bloc/presentation/common/utils/strings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../data/model/device_category.dart';
+import '../../../data/model/device_category_model.dart';
 import '../../../domain/home/home_bloc.dart';
 import 'category_widget.dart';
 
@@ -55,17 +55,17 @@ class CategoryListWidgetState extends State<CategoryListWidget> {
           )),
       Row(children: [
         CategoryWidget(
-          deviceCategory: DeviceCategory(DeviceCategoryType.ALL, "ALL", ""),
+          deviceCategory: DeviceCategoryModel(DeviceCategoryType.ALL, "ALL", ""),
           isSelected: type == DeviceCategoryType.ALL,
           image: "",
         ),
         CategoryWidget(
-          deviceCategory: DeviceCategory(DeviceCategoryType.AC, "Air Conditioner", ""),
+          deviceCategory: DeviceCategoryModel(DeviceCategoryType.AC, "Air Conditioner", ""),
           isSelected: type == DeviceCategoryType.AC,
           image: AppAssets.ac,
         ),
         CategoryWidget(
-          deviceCategory: DeviceCategory(DeviceCategoryType.TV, "Television", ""),
+          deviceCategory: DeviceCategoryModel(DeviceCategoryType.TV, "Television", ""),
           isSelected: type == DeviceCategoryType.TV,
           image: AppAssets.tv_thumb,
         ),

@@ -1,17 +1,13 @@
-import 'package:TA_IOT/bloc/presentation/common/styles/text_styles.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:ta_iot/bloc/presentation/common/styles/text_styles.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../domain/device_detail/device_detail_bloc.dart';
 import '../../common/styles/device_item_style.dart';
 import '../../home/widgets/device_item_icon_widget.dart';
 
 class DeviceParamWidget extends StatelessWidget {
   final String _paramName;
-  Function? _onTap;
+  final Function? _onTap;
   final String _value;
-  String? _image;
+  final String? _image;
 
   DeviceParamWidget({required String value, required String paramName, String? image, Function? onTap}) : _image = image, _value = value, _onTap = onTap, _paramName = paramName;
 

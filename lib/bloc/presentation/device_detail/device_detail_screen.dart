@@ -1,15 +1,10 @@
-import 'package:TA_IOT/bloc/data/model/device_category.dart';
-import 'package:TA_IOT/bloc/data/model/device_model.dart';
-import 'package:TA_IOT/bloc/domain/device_detail/device_detail_bloc.dart';
-import 'package:TA_IOT/bloc/presentation/common/styles/device_item_style.dart';
-import 'package:TA_IOT/bloc/presentation/device_detail/widgets/ac_detail_widget.dart';
-import 'package:TA_IOT/bloc/presentation/device_detail/widgets/tv_detail_widget.dart';
-import 'package:TA_IOT/bloc/presentation/home/widgets/device_item_icon_widget.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:ta_iot/bloc/data/model/device_category_model.dart';
+import 'package:ta_iot/bloc/data/model/device_model.dart';
+import 'package:ta_iot/bloc/domain/device_detail/device_detail_bloc.dart';
+import 'package:ta_iot/bloc/presentation/device_detail/widgets/ac_detail_widget.dart';
+import 'package:ta_iot/bloc/presentation/device_detail/widgets/tv_detail_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
-
 import '../../data/repository/device_detail_repository.dart';
 import '../common/utils/strings.dart';
 

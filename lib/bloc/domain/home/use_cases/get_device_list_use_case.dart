@@ -1,5 +1,4 @@
-import 'package:TA_IOT/bloc/data/model/device_model.dart';
-import 'package:TA_IOT/bloc/data/repository/device_detail_repository.dart';
+import 'package:ta_iot/bloc/data/model/device_model.dart';
 
 
 import '../../../data/repository/abstract_repository.dart';

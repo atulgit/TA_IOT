@@ -4,7 +4,7 @@ part of 'device_detail_bloc.dart';
 abstract class DeviceDetailState extends Equatable {}
 
 class DeviceDetailLoadedState extends DeviceDetailState {
-  late DeviceInfoModel deviceDetail;
+  final DeviceInfoModel deviceDetail;
 
   DeviceDetailLoadedState(this.deviceDetail);
 
@@ -32,7 +32,7 @@ class DeviceDetailError extends DeviceDetailState {
 }
 
 class TVPictureModeChangedState extends DeviceDetailState {
-  late DeviceInfoModel deviceDetail;
+  final DeviceInfoModel deviceDetail;
 
   TVPictureModeChangedState(this.deviceDetail);
 

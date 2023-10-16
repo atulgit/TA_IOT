@@ -1,4 +1,4 @@
-import 'package:TA_IOT/bloc/presentation/common/styles/text_styles.dart';
+import 'package:ta_iot/bloc/presentation/common/styles/text_styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

@@ -1,6 +1,5 @@
-import 'package:TA_IOT/bloc/data/model/device_model.dart';
-import 'package:TA_IOT/bloc/presentation/common/styles/text_styles.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:ta_iot/bloc/data/model/device_model.dart';
+import 'package:ta_iot/bloc/presentation/common/styles/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';

@@ -1,15 +1,13 @@
-import 'package:TA_IOT/bloc/data/model/dashboard_model.dart';
-import 'package:TA_IOT/bloc/data/model/device_category.dart';
-import 'package:TA_IOT/bloc/data/model/device_model.dart';
-import 'package:TA_IOT/bloc/data/repository/abstract_repository.dart';
-import 'package:TA_IOT/bloc/data/repository/device_detail_repository.dart';
-import 'package:TA_IOT/bloc/domain/device_detail/device_detail_bloc.dart';
-import 'package:TA_IOT/bloc/domain/home/home_bloc.dart';
+import 'package:ta_iot/bloc/data/model/dashboard_model.dart';
+import 'package:ta_iot/bloc/data/model/device_category_model.dart';
+import 'package:ta_iot/bloc/data/model/device_model.dart';
+import 'package:ta_iot/bloc/data/repository/abstract_repository.dart';
+import 'package:ta_iot/bloc/data/repository/device_detail_repository.dart';
+import 'package:ta_iot/bloc/domain/device_detail/device_detail_bloc.dart';
+import 'package:ta_iot/bloc/domain/home/home_bloc.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
-
 import 'mock_repository.dart';
 
 void main() {
@@ -39,7 +37,7 @@ void main() {
   });
 
   DeviceInfoModel _mockDeviceDetail = DeviceInfoModel(
-      1, DeviceCategory(DeviceCategoryType.AC, "Air Conditioner", ""), "", "assets/images/ac_icon.png", "LG 101", 0, 12,
+      1, DeviceCategoryModel(DeviceCategoryType.AC, "Air Conditioner", ""), "", "assets/images/ac_icon.png", "LG 101", 0, 12,
       airConditioner: AirConditionerModel(AirConditionerModes.Cool, 80, 24));
 
   //IOT DEVICE DETAIL SCREEN TESTS

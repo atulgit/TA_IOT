@@ -1,8 +1,5 @@
-import 'package:TA_IOT/bloc/data/model/device_category.dart';
-import 'package:TA_IOT/bloc/data/model/device_model.dart';
-import 'package:TA_IOT/bloc/data/repository/device_detail_repository.dart';
-import 'package:TA_IOT/bloc/domain/device_detail/use_cases/get_device_detail_use_case.dart';
-
+import 'package:ta_iot/bloc/data/model/device_model.dart';
+import 'package:ta_iot/bloc/domain/device_detail/use_cases/get_device_detail_use_case.dart';
 import '../../../data/repository/abstract_repository.dart';
 import '../../common/base_use_case.dart';
 
@@ -22,6 +19,9 @@ class ChangeTVPictureModeUseCase extends BaseUseCase {
         device.television?.pictureMode = TelevisionPictureModes.HDR_STANDARD;
         break;
       case TelevisionPictureModes.HDR_STANDARD:
+        device.television?.pictureMode = TelevisionPictureModes.STANDARD;
+        break;
+      default:
         device.television?.pictureMode = TelevisionPictureModes.STANDARD;
         break;
     }

@@ -1,12 +1,10 @@
-import 'package:TA_IOT/bloc/domain/device_detail/device_detail_bloc.dart';
-import 'package:TA_IOT/bloc/presentation/common/utils/strings.dart';
-import 'package:TA_IOT/bloc/presentation/device_detail/widgets/tv_buttons_item_widget.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:ta_iot/bloc/domain/device_detail/device_detail_bloc.dart';
+import 'package:ta_iot/bloc/presentation/common/utils/strings.dart';
+import 'package:ta_iot/bloc/presentation/device_detail/widgets/tv_buttons_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../common/utils/app_assets.dart';
-import 'ac_model_widget.dart';
+
 
 class TVModesWidget extends StatelessWidget {
   const TVModesWidget({

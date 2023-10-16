@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import '../../common/styles/device_item_style.dart';
 
 class TVButtonItemWidget extends StatelessWidget {
-  String _mode = "Cool";
-  String _icon;
+  final String _mode;
+  final String _icon;
 
   TVButtonItemWidget({Key? key, required String mode, required String icon})
       : _icon = icon,

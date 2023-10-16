@@ -1,10 +1,10 @@
 import 'package:equatable/equatable.dart';
 
 class DashboardModel extends Equatable {
-  String date = DateTime.now().toString();
-  int temperature = 0;
-  double energyUsage = 0;
-  int humidity = 0;
+  final String date = DateTime.now().toString();
+  final int temperature;
+  final double energyUsage;
+  final int humidity;
 
   DashboardModel(this.temperature, this.humidity, this.energyUsage);
 

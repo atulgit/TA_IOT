@@ -1,5 +1,4 @@
-import 'package:TA_IOT/bloc/domain/device_detail/device_detail_bloc.dart';
-import 'package:TA_IOT/bloc/domain/home/home_bloc.dart';
+import 'package:ta_iot/bloc/domain/device_detail/device_detail_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -67,9 +66,6 @@ class ACModeListWidgetState extends State<ACModeListWidget> {
         ACModeWidget(
           modeSelected: (mode) {
             home.add(ChangeACModeEvent(_deviceInfoModel.deviceId, mode));
-            // setState(() {
-            //   deviceInfoModel.airConditioner?.mode = mode;
-            // });
           },
           mode: AirConditionerModes.Dry,
           icon: AppAssets.dry,
@@ -78,9 +74,6 @@ class ACModeListWidgetState extends State<ACModeListWidget> {
         ACModeWidget(
           modeSelected: (mode) {
             home.add(ChangeACModeEvent(_deviceInfoModel.deviceId, mode));
-            // setState(() {
-            //   deviceInfoModel.airConditioner?.mode = mode;
-            // });
           },
           mode: AirConditionerModes.Sleep,
           icon: AppAssets.sleep,

@@ -1,10 +1,9 @@
-import 'package:TA_IOT/bloc/data/model/device_model.dart';
-import 'package:TA_IOT/bloc/presentation/common/utils/app_assets.dart';
+import 'package:ta_iot/bloc/data/model/device_model.dart';
+import 'package:ta_iot/bloc/presentation/common/utils/app_assets.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../common/utils/strings.dart';
 import 'ac_mode_list_widget.dart';
-import 'ac_model_widget.dart';
 import 'ac_temperature_widget.dart';
 import 'device_param_widget.dart';
 

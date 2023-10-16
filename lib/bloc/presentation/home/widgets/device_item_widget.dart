@@ -1,8 +1,6 @@
-import 'package:TA_IOT/bloc/presentation/home/widgets/device_item_icon_widget.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:ta_iot/bloc/presentation/home/widgets/device_item_icon_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../data/model/device_model.dart';
 import '../../../domain/home/home_bloc.dart';
 import '../../common/styles/device_item_style.dart';

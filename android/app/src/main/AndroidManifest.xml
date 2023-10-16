@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ta.iot">
    <application
-        android:label="TA_IOT"
+        android:label="ta_iot"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

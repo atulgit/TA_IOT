@@ -1,7 +1,8 @@
 import 'package:equatable/equatable.dart';
 
-import 'device_category.dart';
+import 'device_category_model.dart';
 
+//ignore: must_be_immutable
 class DeviceInfoModel extends Equatable {
   int deviceId = -1;
   String deviceName = "";
@@ -10,7 +11,7 @@ class DeviceInfoModel extends Equatable {
   double energyUsage = 0.0;
   int usageTime = 0;
   String deviceImagePath = "";
-  late DeviceCategory deviceCategory;
+  late DeviceCategoryModel deviceCategory;
 
   AirConditionerModel? airConditioner;
   TelevisionModel? television;

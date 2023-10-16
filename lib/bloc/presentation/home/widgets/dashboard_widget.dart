@@ -1,12 +1,8 @@
-import 'package:TA_IOT/bloc/domain/home/home_bloc.dart';
-import 'package:TA_IOT/bloc/presentation/common/utils/app_assets.dart';
-import 'package:TA_IOT/bloc/presentation/common/utils/extensions.dart';
-import 'package:TA_IOT/bloc/presentation/common/utils/strings.dart';
-import 'package:TA_IOT/bloc/presentation/common/utils/utility.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:ta_iot/bloc/domain/home/home_bloc.dart';
+import 'package:ta_iot/bloc/presentation/common/utils/app_assets.dart';
+import 'package:ta_iot/bloc/presentation/common/utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'dashboard_param_widget.dart';
 import 'energy_widget.dart';
 

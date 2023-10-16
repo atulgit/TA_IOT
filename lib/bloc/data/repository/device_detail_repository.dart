@@ -1,6 +1,6 @@
-import 'package:TA_IOT/bloc/data/model/device_model.dart';
-import 'package:TA_IOT/bloc/data/provider/device_detail_provider.dart';
-import 'package:TA_IOT/bloc/data/repository/abstract_repository.dart';
+import 'package:ta_iot/bloc/data/model/device_model.dart';
+import 'package:ta_iot/bloc/data/provider/device_detail_provider.dart';
+import 'package:ta_iot/bloc/data/repository/abstract_repository.dart';
 
 import '../model/dashboard_model.dart';
 

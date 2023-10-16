@@ -1,13 +1,14 @@
 import 'package:equatable/equatable.dart';
 
-class DeviceCategory extends Equatable {
+//ignore: must_be_immutable
+class DeviceCategoryModel extends Equatable {
   late DeviceCategoryType categoryType;
   String categoryName = "";
   String categoryImage = "";
 
-   DeviceCategory(this.categoryType, this.categoryName, this.categoryImage);
+   DeviceCategoryModel(this.categoryType, this.categoryName, this.categoryImage);
 
-  DeviceCategory.fromJson(Map<String, dynamic> json) {
+  DeviceCategoryModel.fromJson(Map<String, dynamic> json) {
     categoryType = json['categoryId'];
     categoryName = json['categoryName'];
     categoryImage = json['categoryImage'];

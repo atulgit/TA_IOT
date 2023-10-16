@@ -4,7 +4,7 @@ part of 'home_bloc.dart';
 abstract class HomeScreenState extends Equatable {}
 
 class DeviceListLoaded extends HomeScreenState {
-  List<DeviceInfoModel> deviceList = [];
+  final List<DeviceInfoModel> deviceList;
 
   DeviceListLoaded(this.deviceList);
 

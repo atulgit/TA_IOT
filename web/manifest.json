@@ -1,6 +1,6 @@
 {
     "name": "ta_iot",
-    "short_name": "TA_IOT",
+    "short_name": "ta_iot",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

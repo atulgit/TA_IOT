@@ -1,14 +1,12 @@
-import 'package:TA_IOT/bloc/data/model/device_model.dart';
-import 'package:TA_IOT/bloc/data/repository/abstract_repository.dart';
-import 'package:TA_IOT/bloc/domain/device_detail/use_cases/change_ac_mode_use_case.dart';
-import 'package:TA_IOT/bloc/domain/device_detail/use_cases/change_ac_temperature_use_case.dart';
-import 'package:TA_IOT/bloc/domain/device_detail/use_cases/change_tv_picture_mode_use_case.dart';
-import 'package:TA_IOT/bloc/domain/device_detail/use_cases/change_tv_sound_mode_use_case.dart';
-import 'package:TA_IOT/bloc/domain/device_detail/use_cases/get_device_detail_use_case.dart';
+import 'package:ta_iot/bloc/data/model/device_model.dart';
+import 'package:ta_iot/bloc/data/repository/abstract_repository.dart';
+import 'package:ta_iot/bloc/domain/device_detail/use_cases/change_ac_mode_use_case.dart';
+import 'package:ta_iot/bloc/domain/device_detail/use_cases/change_ac_temperature_use_case.dart';
+import 'package:ta_iot/bloc/domain/device_detail/use_cases/change_tv_picture_mode_use_case.dart';
+import 'package:ta_iot/bloc/domain/device_detail/use_cases/change_tv_sound_mode_use_case.dart';
+import 'package:ta_iot/bloc/domain/device_detail/use_cases/get_device_detail_use_case.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../data/repository/device_detail_repository.dart';
 import 'dart:async';
 import 'package:meta/meta.dart';
 
@@ -36,13 +34,13 @@ class DeviceDetailBloc extends Bloc<DeviceDetailEvent, DeviceDetailState> {
         yield TVPictureModeChangedState(device);
       } else if (event is TVSoundModeChangedEvent) {
         var device = await ChangeTVSoundModeUseCase(_deviceDetailRepository).changeTVSoundMode(event.deviceId);
-        emit(TVSoundModeChangedState(device));
+        yield(TVSoundModeChangedState(device));
       } else if (event is ACTemperatureChangeEvent) {
         var device = await ChangeACTemperatureUseCase(_deviceDetailRepository).changeACTemperature(event.increaseOrDecrease, event.deviceId);
-        emit(ACTemperatureChangeState(device));
+        yield(ACTemperatureChangeState(device));
       } else if (event is TVVolumeEvent) {
         _isMute = !_isMute;
-        emit(TVVolumeState(_isMute));
+        yield(TVVolumeState(_isMute));
       }
     } catch (e) {
       yield DeviceDetailError();

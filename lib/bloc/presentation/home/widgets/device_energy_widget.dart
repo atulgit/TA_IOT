@@ -1,5 +1,5 @@
-import 'package:TA_IOT/bloc/presentation/common/styles/text_styles.dart';
-import 'package:TA_IOT/bloc/presentation/common/utils/strings.dart';
+import 'package:ta_iot/bloc/presentation/common/styles/text_styles.dart';
+import 'package:ta_iot/bloc/presentation/common/utils/strings.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../../data/model/device_model.dart';

@@ -1,20 +1,16 @@
-import 'package:TA_IOT/bloc/presentation/common/styles/device_item_style.dart';
-import 'package:TA_IOT/bloc/presentation/common/utils/strings.dart';
+import 'package:ta_iot/bloc/presentation/common/utils/strings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../data/model/device_model.dart';
 import '../../../domain/device_detail/device_detail_bloc.dart';
 import '../../common/utils/app_assets.dart';
-import 'ac_model_widget.dart';
-import 'ac_temperature_widget.dart';
 import 'device_param_widget.dart';
 import 'tv_modes_widget.dart';
 import 'tv_power_button_widget.dart';
 
 class TVDetailWidget extends StatefulWidget {
-  late DeviceInfoModel _deviceInfoModel;
+  late final DeviceInfoModel _deviceInfoModel;
 
   TVDetailWidget({
     required DeviceInfoModel deviceInfoModel,
@@ -35,6 +31,7 @@ class TVDetailWidgetState extends State<TVDetailWidget> {
 
   @override
   void initState() {
+    super.initState();
     _deviceDetailBloc = BlocProvider.of<DeviceDetailBloc>(context);
   }
 

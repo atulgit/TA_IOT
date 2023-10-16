@@ -1,24 +1,23 @@
-import 'package:TA_IOT/bloc/data/model/device_category.dart';
-import 'package:TA_IOT/bloc/domain/home/home_bloc.dart';
-import 'package:TA_IOT/bloc/presentation/common/styles/text_styles.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:ta_iot/bloc/data/model/device_category_model.dart';
+import 'package:ta_iot/bloc/domain/home/home_bloc.dart';
+import 'package:ta_iot/bloc/presentation/common/styles/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../common/styles/device_item_style.dart';
-import '../../common/utils/app_assets.dart';
 
 class CategoryWidget extends StatelessWidget {
-  final DeviceCategory _deviceCategory;
-  bool _isSelected = false;
+  final DeviceCategoryModel _deviceCategory;
+  final bool _isSelected;
   final String _image;
 
   CategoryWidget({
     bool isSelected = false,
     required String image,
-    required DeviceCategory deviceCategory,
+    required DeviceCategoryModel deviceCategory,
     super.key,
-  }) : _isSelected = isSelected, _deviceCategory = deviceCategory, _image = image;
+  })  : _isSelected = isSelected,
+        _deviceCategory = deviceCategory,
+        _image = image;
 
   @override
   Widget build(BuildContext context) {
