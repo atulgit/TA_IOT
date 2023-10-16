@@ -37,7 +37,7 @@ class TVDetailWidgetState extends State<TVDetailWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Expanded(child: Container(
       child: Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Center(
             child: Container(
@@ -88,7 +88,7 @@ class TVDetailWidgetState extends State<TVDetailWidget> {
           ],
         )
       ]),
-    );
+    ));
   }
 
   Widget _getPictureModeWidget() {

@@ -67,10 +67,17 @@ $~~~~~~~~~~~~~~~$--widgets\
 Screen & Widgets -> Bloc -> Use-Cases -> Data Repository -> Data Provider -> Network -> Server
 Bloc Provider will fetch the data from network APIs. Repository classes will fetch the data from provider classes.
 
+# Test
+All Unit Tests Passed!
+Zero Dart Analysis Warnings & Errors!
+![](assets/images/dart_analysis.png)
+
 # Supported Platforms
 This app is tested only on Android Emulator. 
 **Min SDK** - 16
 **Target SDK** - 33
 **Package ID** - com.ta.iot
+
+
 
 

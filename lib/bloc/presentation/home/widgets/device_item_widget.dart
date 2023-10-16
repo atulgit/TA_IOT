@@ -80,7 +80,7 @@ class DeviceItemWidgetState extends State<DeviceItemWidget> {
           ),
           DeviceItemWidgetText(deviceInfoModel: deviceInfoModel),
           const SizedBox(
-            height: 20,
+            height: 15,
           ),
           DeviceEnergyWidget(deviceInfoModel: deviceInfoModel)
         ]),

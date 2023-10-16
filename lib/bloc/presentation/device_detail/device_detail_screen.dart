@@ -41,7 +41,7 @@ class DeviceDetailState extends State<DeviceDetailScreen> {
         create: (context) => _deviceDetailBloc,
         child: Padding(
             padding: EdgeInsets.all(20),
-            child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+            child: Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, crossAxisAlignment: CrossAxisAlignment.center, children: [
               Text(_header, style: TextStyle(fontSize: 18, color: Colors.black87, fontWeight: FontWeight.bold)),
               _getDeviceDetailWidget()
             ])),
@@ -57,9 +57,7 @@ class DeviceDetailState extends State<DeviceDetailScreen> {
         );
 
       case DeviceCategoryType.TV:
-        return TVDetailWidget(
-          deviceInfoModel: widget._deviceInfoModel
-        );
+        return TVDetailWidget(deviceInfoModel: widget._deviceInfoModel);
 
       case DeviceCategoryType.SMART_DOOR:
         return ACDetailWidget(

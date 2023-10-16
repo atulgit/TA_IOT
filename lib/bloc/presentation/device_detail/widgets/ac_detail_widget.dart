@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:ta_iot/bloc/data/model/device_model.dart';
 import 'package:ta_iot/bloc/presentation/common/utils/app_assets.dart';
 import 'package:flutter/cupertino.dart';
@@ -13,12 +14,14 @@ class ACDetailWidget extends StatelessWidget {
   const ACDetailWidget({
     required DeviceInfoModel deviceInfoModel,
     Key? key,
-  }) : _deviceInfoModel = deviceInfoModel, super(key: key);
+  })  : _deviceInfoModel = deviceInfoModel,
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+    return Expanded(
+        child: Container(
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Center(
             child: Container(
                 margin: const EdgeInsets.all(5.0),
@@ -31,11 +34,14 @@ class ACDetailWidget extends StatelessWidget {
         const SizedBox(
           height: 50,
         ),
-        ACTemperatureWidget(deviceInfoModel: _deviceInfoModel,),
+        ACTemperatureWidget(
+          deviceInfoModel: _deviceInfoModel,
+        ),
         const SizedBox(
           height: 50,
         ),
         Row(
+          crossAxisAlignment: CrossAxisAlignment.end,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             DeviceParamWidget(
@@ -48,7 +54,6 @@ class ACDetailWidget extends StatelessWidget {
           ],
         )
       ]),
-    );
+    ));
   }
 }
-

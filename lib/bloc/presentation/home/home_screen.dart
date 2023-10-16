@@ -50,26 +50,27 @@ class HomeState extends State<HomeScreen> {
           Padding(padding: EdgeInsets.only(left: 10, right: 20, top: 20, bottom: 10), child: Text(_header, style: HomeStyles.headerStyle)),
           DashboardWidget(),
           CategoryListWidget(),
-          Container(
-              margin: EdgeInsets.only(top: 10),
-              child: BlocBuilder(
-                bloc: _homeBloc,
-                builder: (BuildContext context, HomeScreenState state) {
-                  if (state is DeviceListLoading) {
-                    return CircularProgressIndicator();
-                  } else if (state is DeviceListLoaded) {
-                    return _getDeviceListWidget(state.deviceList);
-                  } else if (state is DeviceListError) {
-                    return Text(Strings.errorMessage, style: TextStyle(color: Colors.black54));
-                  } else {
-                    return Container();
-                  }
-                },
-                buildWhen: (context, state) {
-                  if (state is DeviceListLoaded) return true;
-                  return false;
-                },
-              ))
+          Expanded(
+              child: Container(
+                  margin: EdgeInsets.only(top: 10),
+                  child: BlocBuilder(
+                    bloc: _homeBloc,
+                    builder: (BuildContext context, HomeScreenState state) {
+                      if (state is DeviceListLoading) {
+                        return CircularProgressIndicator();
+                      } else if (state is DeviceListLoaded) {
+                        return _getDeviceListWidget(state.deviceList);
+                      } else if (state is DeviceListError) {
+                        return Text(Strings.errorMessage, style: TextStyle(color: Colors.black54));
+                      } else {
+                        return Container();
+                      }
+                    },
+                    buildWhen: (context, state) {
+                      if (state is DeviceListLoaded) return true;
+                      return false;
+                    },
+                  )))
         ]));
   }
 
@@ -88,18 +89,10 @@ class HomeState extends State<HomeScreen> {
                 itemBuilder: (BuildContext context, int index) {
                   var deviceItem = deviceList[index];
                   return InkWell(
+                      key: ObjectKey(deviceItem.deviceId.toString()),
                       child: _getDeviceItem(deviceItem),
                       onTap: () {
                         Navigator.pushNamed(context, Routes.deviceDetail, arguments: deviceItem);
-
-                        // Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute<DeviceDetailScreen>(
-                        //       settings: const RouteSettings(name: "/home"),
-                        //       builder: (_) => DeviceDetailScreen(
-                        //         deviceInfoModel: deviceItem,
-                        //       ),
-                        //     ));
                       });
                 })));
   }
