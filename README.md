@@ -1,6 +1,6 @@
 # Tata Digital IOT App
 
-This simple will helps you to create and view list of tasks. This project is created from scratch.
+This app shows list of IOT home devices. It helps to view information, status of devices and to control the devices from within the app.
 
 # App Resources
 Please check below link for Android APK, Screenshots & videos.
