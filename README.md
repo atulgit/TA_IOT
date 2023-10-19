@@ -1,10 +1,10 @@
 # Tata Digital IOT App
 
-This simple will helps you to create and view list of tasks. This project is created from scratch.
+This app shows list of IOT home devices. It helps to view information, status of devices and to control the devices from within the app.
 
 # App Resources
 Please check below link for Android APK, Screenshots & videos.
-[a link](https://drive.google.com/drive/folders/1uCT6R2ycKdQBgJ7NsSjDj-S77zccre6z?usp=sharing)
+[Link - Click Here](https://drive.google.com/drive/folders/1uCT6R2ycKdQBgJ7NsSjDj-S77zccre6z?usp=sharing)
 
 # Contents
 1. TA IOT Task Management App Features.
@@ -12,7 +12,8 @@ Please check below link for Android APK, Screenshots & videos.
 3. Folder Structure
 4. Data Flow
 5. Test Results
-6. Supported Platforms
+6. Non-Functional Requirements
+7. Supported Platforms
 
 # TA IOT Task Management App Features.
 1. Dashboard showing essential parameters (Temperature, Humidity, No. of devices etc..)
@@ -74,14 +75,25 @@ Screen & Widgets -> Bloc -> Use-Cases -> Data Repository -> Data Provider -> Net
 Bloc Provider will fetch the data from network APIs. Repository classes will fetch the data from provider classes.
 
 # Test Results
-All Unit Tests Passed!
-Zero Dart Analysis Warnings & Errors!
+Below are the results
+
+**Zero Dart Analysis Warnings & Errors!**
 
 ![](assets/test_results/dart_analysis.png)
+
+**All Unit Tests Passed!**
+
 ![](assets/test_results/unit_tests.png)
+
+# Non-Functional Requirements
+1. Caching for Device Listing & Performance Improvements
+2. App Pin Authentication for secure access of devices
+3. Localization for app launguage. Different launguages support.
+4. Alerts & Emails for power usage of device. 
 
 # Supported Platforms
 This app is tested only on Android Emulator.
+
 **Min SDK** - 16\
 **Target SDK** - 33\
-**Package ID** - com.ta.iot\
+**Package ID** - com.ta.iot
