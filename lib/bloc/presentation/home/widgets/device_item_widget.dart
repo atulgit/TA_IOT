@@ -12,7 +12,11 @@ class DeviceItemWidget extends StatefulWidget {
   final double _deviceItemHeight;
   final HomeBloc _homeBloc;
 
-  DeviceItemWidget({Key? key, required DeviceInfoModel deviceInfoModel, required double deviceItemHeight, required HomeBloc homeBloc}) : _homeBloc = homeBloc, _deviceItemHeight = deviceItemHeight, _deviceInfoModel = deviceInfoModel, super(key: key);
+  DeviceItemWidget({Key? key, required DeviceInfoModel deviceInfoModel, required double deviceItemHeight, required HomeBloc homeBloc})
+      : _homeBloc = homeBloc,
+        _deviceItemHeight = deviceItemHeight,
+        _deviceInfoModel = deviceInfoModel,
+        super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -27,7 +31,6 @@ class _DeviceItemWidgetState extends State<DeviceItemWidget> {
   late final HomeBloc homeBloc;
 
   _DeviceItemWidgetState({
-    Key? key,
     required this.deviceInfoModel,
     required this.deviceItemHeight,
   });

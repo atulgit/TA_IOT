@@ -24,9 +24,7 @@ class ACTemperatureWidget extends StatefulWidget {
 class _ACTemperatureWidgetState extends State<ACTemperatureWidget> {
   late final DeviceDetailBloc _deviceDetailBloc;
 
-  _ACTemperatureWidgetState({
-    Key? key,
-  });
+  _ACTemperatureWidgetState();
 
   @override
   void initState() {

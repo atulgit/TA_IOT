@@ -19,9 +19,7 @@ class CategoryListWidget extends StatefulWidget {
 class _CategoryListWidgetState extends State<CategoryListWidget> {
   late final HomeBloc _homeBloc;
 
-  _CategoryListWidgetState({
-    Key? key,
-  });
+  _CategoryListWidgetState();
 
   @override
   void initState() {
