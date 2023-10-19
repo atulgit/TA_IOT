@@ -15,11 +15,11 @@ class DeviceDetailScreen extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return DeviceDetailState();
+    return _DeviceDetailState();
   }
 }
 
-class DeviceDetailState extends State<DeviceDetailScreen> {
+class _DeviceDetailState extends State<DeviceDetailScreen> {
   final String _header = Strings.headerDeviceDetail;
   late final DeviceDetailRepository _deviceDetailRepository;
   late final DeviceDetailBloc _deviceDetailBloc;

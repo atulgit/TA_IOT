@@ -15,14 +15,14 @@ class ACModeListWidget extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return ACModeListWidgetState(deviceInfoModel: _deviceInfoModel);
+    return _ACModeListWidgetState(deviceInfoModel: _deviceInfoModel);
   }
 }
 
-class ACModeListWidgetState extends State<ACModeListWidget> {
+class _ACModeListWidgetState extends State<ACModeListWidget> {
   late DeviceInfoModel _deviceInfoModel;
 
-  ACModeListWidgetState({
+  _ACModeListWidgetState({
     required DeviceInfoModel deviceInfoModel,
   }) : _deviceInfoModel = deviceInfoModel;
 

@@ -12,14 +12,14 @@ import 'category_widget.dart';
 class CategoryListWidget extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return CategoryListWidgetState();
+    return _CategoryListWidgetState();
   }
 }
 
-class CategoryListWidgetState extends State<CategoryListWidget> {
+class _CategoryListWidgetState extends State<CategoryListWidget> {
   late final HomeBloc _homeBloc;
 
-  CategoryListWidgetState({
+  _CategoryListWidgetState({
     Key? key,
   });
 

@@ -19,15 +19,15 @@ class TVDetailWidget extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return TVDetailWidgetState(deviceInfoModel: _deviceInfoModel);
+    return _TVDetailWidgetState(deviceInfoModel: _deviceInfoModel);
   }
 }
 
-class TVDetailWidgetState extends State<TVDetailWidget> {
+class _TVDetailWidgetState extends State<TVDetailWidget> {
   late DeviceInfoModel _deviceInfoModel;
   late final DeviceDetailBloc _deviceDetailBloc;
 
-  TVDetailWidgetState({required DeviceInfoModel deviceInfoModel}) : _deviceInfoModel = deviceInfoModel;
+  _TVDetailWidgetState({required DeviceInfoModel deviceInfoModel}) : _deviceInfoModel = deviceInfoModel;
 
   @override
   void initState() {

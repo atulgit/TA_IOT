@@ -13,6 +13,10 @@ class DeviceDetailProvider {
         airConditioner: AirConditionerModel(AirConditionerModes.Dry, 80, 24)),
     DeviceInfoModel(4, DeviceCategoryModel(DeviceCategoryType.TV, "Television", ""), "", "assets/images/tv.png", "Micromax 182C", 0, 5,
         television: TelevisionModel(10, TelevisionPictureModes.STANDARD, TelevisionSoundModes.JAZZ)),
+    DeviceInfoModel(5, DeviceCategoryModel(DeviceCategoryType.AC, "Air Conditioner", ""), "", "assets/images/ac_icon.png", "Hitachi 143", 0, 15,
+        airConditioner: AirConditionerModel(AirConditionerModes.Dry, 80, 24)),
+    DeviceInfoModel(6, DeviceCategoryModel(DeviceCategoryType.TV, "Television", ""), "", "assets/images/tv.png", "Samsung 182C", 0, 5,
+        television: TelevisionModel(10, TelevisionPictureModes.STANDARD, TelevisionSoundModes.JAZZ)),
   ];
 
   Future<List<DeviceInfoModel>> getDeviceList() async {

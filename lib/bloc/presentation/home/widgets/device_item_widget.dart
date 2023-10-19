@@ -16,17 +16,17 @@ class DeviceItemWidget extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return DeviceItemWidgetState(deviceInfoModel: _deviceInfoModel, deviceItemHeight: _deviceItemHeight);
+    return _DeviceItemWidgetState(deviceInfoModel: _deviceInfoModel, deviceItemHeight: _deviceItemHeight);
   }
 }
 
-class DeviceItemWidgetState extends State<DeviceItemWidget> {
+class _DeviceItemWidgetState extends State<DeviceItemWidget> {
   late DeviceInfoModel deviceInfoModel;
   final double deviceItemHeight;
   bool isSwitchedOn = false;
   late final HomeBloc homeBloc;
 
-  DeviceItemWidgetState({
+  _DeviceItemWidgetState({
     Key? key,
     required this.deviceInfoModel,
     required this.deviceItemHeight,

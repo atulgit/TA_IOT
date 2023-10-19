@@ -15,11 +15,11 @@ import '../common/utils/strings.dart';
 class HomeScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return HomeState();
+    return _HomeState();
   }
 }
 
-class HomeState extends State<HomeScreen> {
+class _HomeState extends State<HomeScreen> {
   final GlobalKey<NavigatorState> _navigatorKey = GlobalKey();
 
   late final DeviceDetailRepository _deviceDetailRepository;

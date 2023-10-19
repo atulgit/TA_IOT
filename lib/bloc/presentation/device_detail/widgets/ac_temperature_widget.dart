@@ -17,14 +17,14 @@ class ACTemperatureWidget extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return ACTemperatureWidgetState();
+    return _ACTemperatureWidgetState();
   }
 }
 
-class ACTemperatureWidgetState extends State<ACTemperatureWidget> {
+class _ACTemperatureWidgetState extends State<ACTemperatureWidget> {
   late final DeviceDetailBloc _deviceDetailBloc;
 
-  ACTemperatureWidgetState({
+  _ACTemperatureWidgetState({
     Key? key,
   });
 
