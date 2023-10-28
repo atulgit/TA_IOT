@@ -6,6 +6,10 @@ This app shows list of IOT home devices. It helps to view information, status of
 Please check below link for Android APK, Screenshots & videos.
 [Link - Click Here](https://drive.google.com/drive/folders/1uCT6R2ycKdQBgJ7NsSjDj-S77zccre6z?usp=sharing)
 
+
+# App Screenshots
+<img src="assets/screenshots/scr_1.png" alt="drawing" width="200"/> &nbsp; <img src="assets/screenshots/scr_3.png" alt="drawing" width="200"/> &nbsp; <img src="assets/screenshots/scr_5.png" alt="drawing" width="200"/> &nbsp; <img src="assets/screenshots/scr_2.png" alt="drawing" width="200"/> &nbsp; <img src="assets/screenshots/scr_4.png" alt="drawing" width="200"/>
+
 # Contents
 1. TA IOT Task Management App Features.
 2. Architectural Design
@@ -89,7 +93,7 @@ Below are the results
 1. Caching for Device Listing & Performance Improvements
 2. App Pin Authentication for secure access of devices
 3. Localization for app launguage. Different launguages support.
-4. Alerts & Emails for power usage of device. 
+4. Alerts & Emails for power usage of device.
 
 # Supported Platforms
 This app is tested only on Android Emulator.
